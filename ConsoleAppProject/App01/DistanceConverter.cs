@@ -13,9 +13,7 @@ namespace ConsoleAppProject.App01
     public class DistanceConverter
     {
         public const int FEET_IN_MILES = 5280;
-
         public const double METRES_IN_MILES = 1609.34;
-
         public const double FEET_IN_METRES = 3.28084;
 
         public const string FEET = "Feet";
@@ -41,10 +39,12 @@ namespace ConsoleAppProject.App01
         /// </summary>
         public void ConvertDistance()
         {
-            fromUnit = DisplayChoices(" Please select the from Distance Unit > ");
-            toUnit = DisplayChoices(" Please select the to Distance Unit > ");
+            OutputHeading();
 
-            OutputHeading($"Converting {fromUnit} to {toUnit}");
+            string fromUnit = SelectUnit(" Please select the from Distance Unit > ");
+            string toUnit = SelectUnit(" Please select the to Distance Unit > ");
+
+            Console.WriteLine($" Converting {fromUnit} to {toUnit}");
 
             fromDistance = InputDistance($" Please enter the Distance in {fromUnit} > ");
 
@@ -56,13 +56,15 @@ namespace ConsoleAppProject.App01
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="prompt"></param>
+        /// <param name="prompt"></param> 
         /// <returns></returns>
         private string SelectUnit(string prompt)
         {
             string choice = DisplayChoices(prompt);
 
-            return ExecuteChoice(choice);
+            string unit = ExecuteChoice(choice);
+            Console.WriteLine($" You have chosen {unit}");
+            return choice;
         }
 
         /// <summary>
@@ -73,9 +75,9 @@ namespace ConsoleAppProject.App01
         private static string DisplayChoices(string prompt)
         {
             Console.WriteLine();
-            Console.WriteLine(" 1. {FEET}");
-            Console.WriteLine(" 2. {METRES}");
-            Console.WriteLine(" 3. {MILES}");
+            Console.WriteLine($" 1. {FEET}");
+            Console.WriteLine($" 2. {METRES}");
+            Console.WriteLine($" 3. {MILES}");
             Console.WriteLine();
 
             Console.Write(prompt);
@@ -90,15 +92,15 @@ namespace ConsoleAppProject.App01
         /// <returns></returns>
         private string ExecuteChoice(string choice)
         {
-            if (choice.Equals("1"))
+            if (choice == "1")
             {
                 return FEET;
             }
-            else if (choice.Equals("2"))
+            else if (choice == "2")
             {
                 return METRES;
             }
-            else if (choice.Equals("3"))
+            else if (choice == "3")
             {
                 return MILES;
             }
@@ -129,9 +131,13 @@ namespace ConsoleAppProject.App01
             {
                 toDistance = fromDistance / FEET_IN_MILES;
             }
-            else if (fromUnit == FEET && toUnit == MILES)
+            else if (fromUnit == MILES && toUnit == METRES)
             {
-                toDistance = fromDistance / FEET_IN_MILES;
+                toDistance = fromDistance * METRES_IN_MILES;
+            }
+            else if (fromUnit == METRES && toUnit == MILES)
+            {
+                toDistance = fromDistance / METRES_IN_MILES;
             }
         }
 
@@ -147,7 +153,7 @@ namespace ConsoleAppProject.App01
         /// <summary>
         /// Print the heading of the distance converter application
         /// </summary>
-        private static void OutputHeading(String prompt)
+        private static void OutputHeading()
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
 
@@ -156,9 +162,6 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("       Distance Converter        ");
             Console.WriteLine("        by Samuel Baker          ");
             Console.WriteLine(" =============================== ");
-            Console.WriteLine();
-            Console.WriteLine(prompt);
-            Console.WriteLine();
         }
     }
 }
