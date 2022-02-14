@@ -8,7 +8,7 @@ namespace ConsoleAppProject.App01
     /// output the equivalent distance in another unit (toUnit)
     /// </summary>
     /// <author>
-    /// Samuel Baker 08/02/2022
+    /// Samuel Baker 14/02/2022
     /// </author>
     public class DistanceConverter
     {
@@ -23,19 +23,19 @@ namespace ConsoleAppProject.App01
         private double fromDistance;
         private double toDistance;
 
-        private string fromUnit;
-        private string toUnit;  
+        public string fromUnit;
+        public string toUnit;
 
         public DistanceConverter()
         {
-            fromUnit = MILES;
-            toUnit = FEET;
+            fromUnit = FEET;
+            toUnit = MILES;
         }
 
         /// <summary>
         /// Output a heading
-        /// Ask for input for miles 
-        /// Calculate and output the same distance in feet
+        /// Ask for input for the distance in the initial unit
+        /// Calculate and output the same distance in the second unit
         /// </summary>
         public void ConvertDistance()
         {
@@ -92,15 +92,15 @@ namespace ConsoleAppProject.App01
         /// <returns></returns>
         private string ExecuteChoice(string choice)
         {
-            if (choice == "1")
+            if (choice.Equals("1"))
             {
                 return FEET;
             }
-            else if (choice == "2")
+            else if (choice.Equals("2"))
             {
                 return METRES;
             }
-            else if (choice == "3")
+            else if (choice.Equals("3"))
             {
                 return MILES;
             }
@@ -146,7 +146,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void OutputDistance()
         {
-            Console.WriteLine($"{fromDistance} {fromUnit} " +
+            Console.WriteLine($" {fromDistance} {fromUnit} " +
                 $"is {toDistance} {toUnit}");
         }
 
