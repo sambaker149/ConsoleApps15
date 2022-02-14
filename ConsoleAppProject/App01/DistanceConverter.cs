@@ -26,11 +26,7 @@ namespace ConsoleAppProject.App01
         public string fromUnit;
         public string toUnit;
 
-        public DistanceConverter()
-        {
-            fromUnit = FEET;
-            toUnit = MILES;
-        }
+
 
         /// <summary>
         /// Output a heading
@@ -64,7 +60,7 @@ namespace ConsoleAppProject.App01
 
             string unit = ExecuteChoice(choice);
             Console.WriteLine($" You have chosen {unit}");
-            return choice;
+            return unit;
         }
 
         /// <summary>
@@ -139,6 +135,14 @@ namespace ConsoleAppProject.App01
             {
                 toDistance = fromDistance / METRES_IN_MILES;
             }
+            else if (fromUnit == FEET && toUnit == METRES)
+            {
+                toDistance = fromDistance * FEET_IN_METRES;
+            }
+            else if (fromUnit == METRES && toUnit == FEET)
+            {
+                toDistance = fromDistance / FEET_IN_METRES;
+            }
         }
 
         /// <summary>
@@ -155,7 +159,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private static void OutputHeading()
         {
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine();
             Console.WriteLine(" =============================== ");
