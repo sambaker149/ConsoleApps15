@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleAppProject.Helpers;
+using System;
 
 namespace ConsoleAppProject.App01
 {
@@ -28,47 +29,35 @@ namespace ConsoleAppProject.App01
         public const double METRES_IN_MILES = 1609.34;
         public const double MILES_IN_KILOMETRES = 0.621371;
 
-        public const string INCHES = "Inches";
-        public const string CENTIMETRES = "Centimetres";
-        public const string FEET = "Feet";
-        public const string METRES = "Metres";
-        public const string KILOMETRES = "Kilometres";
-        public const string MILES = "Miles";
-
         private double fromDistance;
         private double toDistance;
 
-        public string fromUnit;
-        public string toUnit;
+        private DistanceUnits fromUnit;
+        private DistanceUnits toUnit;
 
         /// <summary>
         /// Output a heading
         /// Prompt user as  to what units they want to convert between 
-        /// </summary>
-        public DistanceConverter()
-        {
-            OutputHeading();
-
-            Console.WriteLine();
-            Console.WriteLine(" Choose a Unit to Convert From");
-            fromUnit = SelectUnit(" Please Select a Unit > ");
-
-            Console.WriteLine();
-            Console.WriteLine(" Choose a Unit to Convert To");
-            toUnit = SelectUnit(" Please Select a Unit > ");
-            
-            Console.WriteLine();
-            Console.WriteLine($" Converting {fromUnit} to {toUnit}");
-            Console.WriteLine();
-        }
-
-        /// <summary>
         /// Ask for input for the distance in the initial unit
         /// Calculate and output the same distance in the second unit
         /// </summary>
-        public void ConvertDistance()
+        public void Run()
         {
-            fromDistance = InputDistance($" Please enter the Distance in {fromUnit} > ");
+            ConsoleHelper.OutputHeading("App01 - Distance Converter");
+
+            Console.WriteLine();
+            fromUnit = SelectUnit(" Please Select a Unit to Convert From");
+            Console.WriteLine($" You have chosen {fromUnit}");
+
+            Console.WriteLine();
+            toUnit = SelectUnit(" Please Select a Unit to Convert To");
+            Console.WriteLine($" You have chosen {toUnit}");
+
+            Console.WriteLine();
+            Console.WriteLine($" Converting {fromUnit} to {toUnit}");
+            Console.WriteLine();
+
+            fromDistance = ConsoleHelper.InputNumber($" Please enter the Distance in {fromUnit} > ");
 
             CalculateDistance();
 
@@ -76,79 +65,43 @@ namespace ConsoleAppProject.App01
         }
 
         /// <summary>
-        /// Prompts the user to select a unit from a list of choices
-        /// Executes the choice
-        /// Prints out a message telling the user the chosen unit
-        /// </summary>
-        private string SelectUnit(string prompt)
-        {
-            string choice = DisplayChoices(prompt);
-
-            string unit = ExecuteChoice(choice);
-            Console.WriteLine($" You have chosen {unit}");
-            return unit;
-        }
-
-        /// <summary>
         /// Prints a list of choices for the user to select from
         /// </summary>
-        private static string DisplayChoices(string prompt)
+        private DistanceUnits SelectUnit(string prompt)
         {
-            Console.WriteLine();
-            Console.WriteLine($" 1. {INCHES}");
-            Console.WriteLine($" 2. {CENTIMETRES}");
-            Console.WriteLine($" 3. {FEET}");
-            Console.WriteLine($" 4. {METRES}");
-            Console.WriteLine($" 5. {KILOMETRES}");
-            Console.WriteLine($" 6. {MILES}");
-            Console.WriteLine();
+            string[] choices =
+            {
+                $" {DistanceUnits.Inches}",
+                $" {DistanceUnits.Centimetres}",
+                $" {DistanceUnits.Feet}",
+                $" {DistanceUnits.Metres}",
+                $" {DistanceUnits.Kilometres}",
+                $" {DistanceUnits.Miles}"
+            };
 
-            Console.Write(prompt);
-            string choice = Console.ReadLine();
-            return choice;
+            Console.WriteLine(prompt);
+            Console.WriteLine();
+            int choice = ConsoleHelper.SelectChoice(choices);
+
+            return ExecuteChoice(choice);
         }
 
         /// <summary>
         /// Executes the choice of unit based on the number inputted by the user
         /// </summary>
-        private string ExecuteChoice(string choice)
+        private static DistanceUnits ExecuteChoice(int choice)
         {
-            if (choice.Equals("1"))
+            switch (choice)
             {
-                return INCHES;
-            }
-            else if (choice.Equals("2"))
-            {
-                return CENTIMETRES;
-            }
-            if (choice.Equals("3"))
-            {
-                return FEET;
-            }
-            else if (choice.Equals("4"))
-            {
-                return METRES;
-            }
-            else if (choice.Equals("5"))
-            {
-                return KILOMETRES;
-            }
-            else if (choice.Equals("6"))
-            {
-                return MILES;
-            }
-            return null;
-        }
+                case 1: return DistanceUnits.Inches; break;
+                case 2: return DistanceUnits.Centimetres; break;
+                case 3: return DistanceUnits.Feet; break;
+                case 4: return DistanceUnits.Metres; break;
+                case 5: return DistanceUnits.Kilometres; break;
+                case 6: return DistanceUnits.Miles; break;
 
-        /// <summary>
-        /// Prompt to user to input the distance in miles
-        /// Input the miles as a double number
-        /// </summary>
-        private double InputDistance(string prompt)
-        {
-            Console.Write(prompt);
-            string number = Console.ReadLine();
-            return Convert.ToDouble(number);
+                default: return DistanceUnits.NoUnit;
+            }
         }
 
         /// <summary>
@@ -156,123 +109,152 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void CalculateDistance()
         {
-            if (fromUnit == INCHES && toUnit == CENTIMETRES)
+            if (fromUnit == DistanceUnits.Inches &&
+                toUnit == DistanceUnits.Centimetres)
             {
                 toDistance = fromDistance / INCHES_IN_CENTIMETRES;
             }
-            else if (fromUnit == CENTIMETRES && toUnit == INCHES)
+            else if (fromUnit == DistanceUnits.Centimetres &&
+                    toUnit == DistanceUnits.Inches)
             {
                 toDistance = fromDistance * INCHES_IN_CENTIMETRES;
             }
-            else if (fromUnit == INCHES && toUnit == FEET)
+            else if (fromUnit == DistanceUnits.Inches &&
+                    toUnit == DistanceUnits.Feet)
             {
                 toDistance = fromDistance / INCHES_IN_FEET;
             }
-            else if (fromUnit == FEET && toUnit == INCHES)
+            else if (fromUnit == DistanceUnits.Feet &&
+                    toUnit == DistanceUnits.Inches)
             {
                 toDistance = fromDistance * INCHES_IN_FEET;
             }
-            else if (fromUnit == INCHES && toUnit == METRES)
+            else if (fromUnit == DistanceUnits.Inches &&
+                    toUnit == DistanceUnits.Metres)
             {
                 toDistance = fromDistance / INCHES_IN_METRES;
             }
-            else if (fromUnit == METRES && toUnit == INCHES)
+            else if (fromUnit == DistanceUnits.Metres &&
+                    toUnit == DistanceUnits.Inches)
             {
                 toDistance = fromDistance * INCHES_IN_METRES;
             }
-            else if (fromUnit == INCHES && toUnit == KILOMETRES)
+            else if (fromUnit == DistanceUnits.Inches &&
+                    toUnit == DistanceUnits.Kilometres)
             {
                 toDistance = fromDistance / INCHES_IN_KILOMETRES;
             }
-            else if (fromUnit == KILOMETRES && toUnit == INCHES)
+            else if (fromUnit == DistanceUnits.Kilometres &&
+                    toUnit == DistanceUnits.Inches)
             {
                 toDistance = fromDistance * INCHES_IN_KILOMETRES;
             }
-            else if (fromUnit == INCHES && toUnit == MILES)
+            else if (fromUnit == DistanceUnits.Inches &&
+                    toUnit == DistanceUnits.Miles)
             {
                 toDistance = fromDistance / INCHES_IN_MILES;
             }
-            else if (fromUnit == MILES && toUnit == INCHES)
+            else if (fromUnit == DistanceUnits.Miles &&
+                    toUnit == DistanceUnits.Inches)
             {
                 toDistance = fromDistance * INCHES_IN_MILES;
             }
-            else if (fromUnit == CENTIMETRES && toUnit == FEET)
+            else if (fromUnit == DistanceUnits.Centimetres &&
+                    toUnit == DistanceUnits.Feet)
             {
                 toDistance = fromDistance / CENTIMETRES_IN_FEET;
             }
-            else if (fromUnit == FEET && toUnit == CENTIMETRES)
+            else if (fromUnit == DistanceUnits.Feet &&
+                    toUnit == DistanceUnits.Centimetres)
             {
                 toDistance = fromDistance * CENTIMETRES_IN_FEET;
             }
-            else if (fromUnit == CENTIMETRES && toUnit == METRES)
+            else if (fromUnit == DistanceUnits.Centimetres &&
+                    toUnit == DistanceUnits.Metres)
             {
                 toDistance = fromDistance / CENTIMETRES_IN_METRES;
             }
-            else if (fromUnit == METRES && toUnit == CENTIMETRES)
+            else if (fromUnit == DistanceUnits.Metres &&
+                    toUnit == DistanceUnits.Centimetres)
             {
                 toDistance = fromDistance * CENTIMETRES_IN_METRES;
             }
-            else if (fromUnit == CENTIMETRES && toUnit == KILOMETRES)
+            else if (fromUnit == DistanceUnits.Centimetres &&
+                    toUnit == DistanceUnits.Kilometres)
             {
                 toDistance = fromDistance / CENTIMETRES_IN_KILOMETRES;
             }
-            else if (fromUnit == KILOMETRES && toUnit == CENTIMETRES)
+            else if (fromUnit == DistanceUnits.Kilometres &&
+                    toUnit == DistanceUnits.Centimetres)
             {
                 toDistance = fromDistance * CENTIMETRES_IN_KILOMETRES;
             }
-            else if (fromUnit == CENTIMETRES && toUnit == MILES)
+            else if (fromUnit == DistanceUnits.Centimetres && toUnit == DistanceUnits.Miles)
             {
                 toDistance = fromDistance / CENTIMETRES_IN_MILES;
             }
-            else if (fromUnit == MILES && toUnit == CENTIMETRES)
+            else if (fromUnit == DistanceUnits.Miles &&
+                    toUnit == DistanceUnits.Centimetres)
             {
                 toDistance = fromDistance * CENTIMETRES_IN_MILES;
             }
-            else if (fromUnit == FEET && toUnit == METRES)
+            else if (fromUnit == DistanceUnits.Feet &&
+                    toUnit == DistanceUnits.Metres)
             {
                 toDistance = fromDistance / FEET_IN_METRES;
             }
-            else if (fromUnit == METRES && toUnit == FEET)
+            else if (fromUnit == DistanceUnits.Metres &&
+                    toUnit == DistanceUnits.Feet)
             {
                 toDistance = fromDistance * FEET_IN_METRES;
             }
-            else if (fromUnit == FEET && toUnit == MILES)
+            else if (fromUnit == DistanceUnits.Feet &&
+                    toUnit == DistanceUnits.Miles)
             {
                 toDistance = fromDistance / FEET_IN_MILES;
             }
-            else if (fromUnit == MILES && toUnit == FEET)
+            else if (fromUnit == DistanceUnits.Miles &&
+                    toUnit == DistanceUnits.Feet)
             {
                 toDistance = fromDistance * FEET_IN_MILES;
             }
-            else if (fromUnit == FEET && toUnit == KILOMETRES)
+            else if (fromUnit == DistanceUnits.Feet &&
+                    toUnit == DistanceUnits.Kilometres)
             {
                 toDistance = fromDistance / FEET_IN_KILOMETRES;
             }
-            else if (fromUnit == KILOMETRES && toUnit == FEET)
+            else if (fromUnit == DistanceUnits.Kilometres &&
+                    toUnit == DistanceUnits.Feet)
             {
                 toDistance = fromDistance * FEET_IN_KILOMETRES;
             }
-            else if (fromUnit == METRES && toUnit == KILOMETRES)
+            else if (fromUnit == DistanceUnits.Metres &&
+                    toUnit == DistanceUnits.Kilometres)
             {
                 toDistance = fromDistance / METRES_IN_KILOMETRES;
             }
-            else if (fromUnit == KILOMETRES && toUnit == METRES)
+            else if (fromUnit == DistanceUnits.Kilometres &&
+                    toUnit == DistanceUnits.Metres)
             {
                 toDistance = fromDistance * METRES_IN_KILOMETRES;
             }
-            else if (fromUnit == METRES && toUnit == MILES)
+            else if (fromUnit == DistanceUnits.Metres &&
+                    toUnit == DistanceUnits.Miles)
             {
                 toDistance = fromDistance / METRES_IN_MILES;
             }
-            else if (fromUnit == MILES && toUnit == METRES)
+            else if (fromUnit == DistanceUnits.Miles &&
+                    toUnit == DistanceUnits.Metres)
             {
                 toDistance = fromDistance * METRES_IN_MILES;
             }
-            else if (fromUnit == MILES && toUnit == KILOMETRES)
+            else if (fromUnit == DistanceUnits.Miles &&
+                    toUnit == DistanceUnits.Kilometres)
             {
                 toDistance = fromDistance / MILES_IN_KILOMETRES;
             }
-            else if (fromUnit == KILOMETRES && toUnit == MILES)
+            else if (fromUnit == DistanceUnits.Kilometres &&
+                    toUnit == DistanceUnits.Miles)
             {
                 toDistance = fromDistance * MILES_IN_KILOMETRES;
             }
@@ -286,20 +268,6 @@ namespace ConsoleAppProject.App01
             Console.WriteLine();
             Console.WriteLine($" {fromDistance} {fromUnit} " +
                 $"is {toDistance} {toUnit}");
-        }
-
-        /// <summary>
-        /// Print the heading of the distance converter application
-        /// </summary>
-        private static void OutputHeading()
-        {
-            Console.ForegroundColor = ConsoleColor.White;
-
-            Console.WriteLine();
-            Console.WriteLine(" =============================== ");
-            Console.WriteLine("       Distance Converter        ");
-            Console.WriteLine("        by Samuel Baker          ");
-            Console.WriteLine(" =============================== ");
         }
     }
 }

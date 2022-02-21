@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleAppProject.Helpers;
+using System;
 
 namespace ConsoleAppProject.App02
 {
@@ -16,27 +17,13 @@ namespace ConsoleAppProject.App02
         /// Output a heading
         /// Prompt user as  to what units they want to convert between 
         /// </summary>
-        public BMICalculator()
+        public void Run()
         {
-            OutputHeading();
+            ConsoleHelper.OutputHeading("App02 - BMI Calculator");
         }
 
         public void CalculateBMI()
         {
-        }
-
-        /// <summary>
-        /// Print the heading of the distance converter application
-        /// </summary>
-        private static void OutputHeading()
-        {
-            Console.ForegroundColor = ConsoleColor.White;
-
-            Console.WriteLine();
-            Console.WriteLine(" =============================== ");
-            Console.WriteLine("        BMI Calculator           ");
-            Console.WriteLine("        by Samuel Baker          ");
-            Console.WriteLine(" =============================== ");
         }
     }
 }

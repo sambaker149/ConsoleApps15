@@ -9,6 +9,8 @@ namespace ConsoleAppProject.App01
     {
         [Display(Name = "No Unit")]
         NoUnit,
+        Inches,
+        Centimetres,
         Feet,
         Metres,
         Kilometres,
