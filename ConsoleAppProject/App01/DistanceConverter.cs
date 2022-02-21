@@ -9,7 +9,7 @@ namespace ConsoleAppProject.App01
     /// output the equivalent distance in another unit (toUnit)
     /// </summary>
     /// <author>
-    /// Samuel Baker 18/02/2022
+    /// Samuel Baker 21/02/2022
     /// </author>
     public class DistanceConverter
     {
