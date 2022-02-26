@@ -27,7 +27,6 @@ namespace ConsoleAppProject
             Console.WriteLine(" ================================================= ");
             Console.WriteLine();
 
-            Console.WriteLine();
             AppsList appChoice = SelectApp(" Please Choose which Application You would like to Use");
 
             RunApp();
