@@ -12,7 +12,7 @@ namespace ConsoleAppProject
     /// to start App01 to App05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Samuel Baker 21/02/2022
+    /// Samuel Baker 26/02/2022
     /// </summary>
     public class Program
     {
@@ -27,11 +27,56 @@ namespace ConsoleAppProject
             Console.WriteLine(" ================================================= ");
             Console.WriteLine();
 
-            DistanceConverter converter = new DistanceConverter();
-            converter.Run();
+            Console.WriteLine();
+            AppsList appChoice = SelectApp(" Please Choose which Application You would like to Use");
 
-            BMICalculator calculator = new BMICalculator();
-            calculator.Run();
+            RunApp();
+
+            /// <summary>
+            /// Prints a list of choices for the user to select from
+            /// </summary>
+            AppsList SelectApp(string prompt)
+            {
+                string[] choices =
+                {
+                $" {AppsList.DistanceConverter}",
+                $" {AppsList.BMICalculator}"
+            };
+
+                Console.WriteLine(prompt);
+                Console.WriteLine();
+                int choice = ConsoleHelper.SelectChoice(choices);
+
+                return ExecuteChoice(choice);
+            }
+
+            /// <summary>
+            /// Executes the choice of unit based on the number inputted by the user
+            /// </summary>
+            static AppsList ExecuteChoice(int choice)
+            {
+                switch (choice)
+                {
+                    case 1: return AppsList.DistanceConverter; break;
+                    case 2: return AppsList.BMICalculator; break;
+
+                    default: return AppsList.NoApp;
+                }
+            }
+
+            void RunApp()
+            {
+                if (appChoice.Equals(AppsList.DistanceConverter))
+                {
+                    DistanceConverter converter = new DistanceConverter();
+                    converter.Run();
+                }
+                else if (appChoice.Equals(AppsList.BMICalculator))
+                {
+                    BMICalculator calculator = new BMICalculator();
+                    calculator.Run();
+                }
+            }
         }
     }
 }

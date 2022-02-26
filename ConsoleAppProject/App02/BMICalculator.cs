@@ -22,8 +22,10 @@ namespace ConsoleAppProject.App02
 
         private double userHeight;
         private double userWeight;
+        private double weight703;
+        private double heightSquared;
 
-        //private UnitChoices unitChoice;
+        private UnitChoices unitChoice;
         private BMICategories Category;
 
         private double BMI;
@@ -36,20 +38,27 @@ namespace ConsoleAppProject.App02
         {
             ConsoleHelper.OutputHeading("App02 - BMI Calculator");
 
-            //Console.WriteLine();
-            //unitChoice = SelectUnit(" Please Choose whether to use Imperial or Metric Units");
-            //Console.WriteLine($" You have chosen {unitChoice} Units");
+            Console.WriteLine();
+            unitChoice = SelectUnit(" Please Choose whether to use Imperial or Metric Units");
+            Console.WriteLine($" You have chosen {unitChoice} Units");
 
-            //Console.WriteLine();
-            //Console.WriteLine($" Calculating using {unitChoice} Units");
-            //Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine($" Calculating using {unitChoice} Units");
+            Console.WriteLine();
 
-            userHeight = ConsoleHelper.InputNumber($" Please enter your Height in {UnitsList.Metres} > ");
-            userWeight = ConsoleHelper.InputNumber($" Please enter your Weight in {UnitsList.Kilograms} > ");
+            if (unitChoice.Equals(UnitChoices.Imperial))
+            {
+                userHeight = ConsoleHelper.InputNumber($" Please enter your Height in {UnitsList.Feet} > ");
+                userWeight = ConsoleHelper.InputNumber($" Please enter your Weight in {UnitsList.Stones} > ");
+            }
+
+            if (unitChoice.Equals(UnitChoices.Metric))
+            {
+                userHeight = ConsoleHelper.InputNumber($" Please enter your Height in {UnitsList.Metres} > ");
+                userWeight = ConsoleHelper.InputNumber($" Please enter your Weight in {UnitsList.Kilograms} > ");
+            }
 
             CalculateBMI();
-
-            CategoriseBMI(BMI);
 
             OutputBMI();
         }
@@ -73,7 +82,8 @@ namespace ConsoleAppProject.App02
         }
 
         /// <summary>
-        /// Executes the choice of unit based on the number inputted by the user
+        /// Executes the choice of unit based on the number inputted 
+        /// by the user
         /// </summary>
         private static UnitChoices ExecuteChoice(int choice)
         {
@@ -87,17 +97,31 @@ namespace ConsoleAppProject.App02
         }
 
         /// <summary>
-        /// 
+        /// Calculates the user's BMI using the appropriate formula 
+        /// based on measurements given
         /// </summary>
         public void CalculateBMI()
         {
-        BMI = userWeight / userHeight * userHeight;
+            if (unitChoice.Equals(UnitChoices.Imperial))
+            {
+                heightSquared = userHeight * userHeight;
+                weight703 = userWeight * 703;
+                BMI = weight703 / heightSquared;
+            }
+
+            if (unitChoice.Equals(UnitChoices.Metric))
+            {
+                heightSquared = userHeight * userHeight;
+                BMI = userWeight / heightSquared;
+            }
+
+            CategoriseBMI();
         }
 
         /// <summary>
-        /// 
+        /// Calculates the BMI category using the calculated BMI
         /// </summary>
-        private BMICategories CategoriseBMI(double BMI)
+        private void CategoriseBMI()
         {
             if (BMI <= BMI_UNDERWEIGHT)
             {
@@ -126,7 +150,7 @@ namespace ConsoleAppProject.App02
         }
 
         /// <summary>
-        /// Print out the result of the conversion from miles to metres
+        /// Print out the user's BMI and additional information
         /// </summary>
         private void OutputBMI()
         {
