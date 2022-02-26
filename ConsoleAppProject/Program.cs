@@ -1,4 +1,5 @@
-﻿using ConsoleAppProject.App01;
+﻿using ConsoleAppProject;
+using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
 using ConsoleAppProject.Helpers;
 using System;
@@ -13,7 +14,7 @@ namespace ConsoleAppProject
     /// This Project has been modified by:
     /// Samuel Baker 21/02/2022
     /// </summary>
-    public static class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
