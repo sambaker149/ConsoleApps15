@@ -13,6 +13,9 @@ namespace ConsoleAppProject.Helpers
     /// <author>
     /// Derek Peacock 2021
     /// </author>
+    /// <modified>
+    /// Samuel Baker 26/02/2022
+    /// </modified>
     /// </summary>
     public static class ConsoleHelper
     {
@@ -74,7 +77,7 @@ namespace ConsoleAppProject.Helpers
                 catch (Exception)
                 {
                     isValid = false;
-                    Console.WriteLine(" INVALID NUMBER!");
+                    Console.WriteLine(" Number is Invalid - Try Again");
                 }
 
             } while (!isValid);

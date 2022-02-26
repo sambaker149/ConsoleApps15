@@ -9,7 +9,7 @@ namespace ConsoleAppProject.App01
     /// output the equivalent distance in another unit (toUnit)
     /// </summary>
     /// <author>
-    /// Samuel Baker 21/02/2022
+    /// Samuel Baker 26/02/2022
     /// </author>
     public class DistanceConverter
     {
@@ -45,7 +45,6 @@ namespace ConsoleAppProject.App01
         {
             ConsoleHelper.OutputHeading("App01 - Distance Converter");
 
-            Console.WriteLine();
             fromUnit = SelectUnit(" Please Select a Unit to Convert From");
             Console.WriteLine($" You have chosen {fromUnit}");
 

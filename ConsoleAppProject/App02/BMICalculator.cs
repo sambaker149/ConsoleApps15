@@ -13,7 +13,7 @@ namespace ConsoleAppProject.App02
     /// </author>
     public class BMICalculator
     {
-        public const double BMI_UNDERWEIGHT = 18.49;
+        public const double BMI_UNDERWEIGHT = 18.5;
         public const double BMI_NORMAL = 18.5;
         public const int BMI_OVERWEIGHT = 25;
         public const int BMI_OBESE_I = 30;
@@ -22,8 +22,6 @@ namespace ConsoleAppProject.App02
 
         private double userHeight;
         private double userWeight;
-        private double weight703;
-        private double heightSquared;
 
         private UnitChoices unitChoice;
         private BMICategories Category;
@@ -37,6 +35,8 @@ namespace ConsoleAppProject.App02
         public void Run()
         {
             ConsoleHelper.OutputHeading("App02 - BMI Calculator");
+
+            OutputIntroduction();
 
             Console.WriteLine();
             unitChoice = SelectUnit(" Please Choose whether to use Imperial or Metric Units");
@@ -61,6 +61,35 @@ namespace ConsoleAppProject.App02
             CalculateBMI();
 
             OutputBMI();
+        }
+
+        /// <summary>
+        /// Outputs an introduction to the application
+        /// </summary>
+        private static void OutputIntroduction()
+        {
+            Console.WriteLine(" This Application is designed to calculate your BMI in " +
+                "accordance with the World Health Organisation figures for BMI, as below");
+            Console.WriteLine();
+            Console.WriteLine($" Underweight = <{BMI_UNDERWEIGHT}");
+            Console.WriteLine($" Normal = >{BMI_NORMAL}");
+            Console.WriteLine($" Overweight = >{BMI_OVERWEIGHT}");
+            Console.WriteLine($" Obese Class I = >{BMI_OBESE_I}");
+            Console.WriteLine($" Obese Class II = >{BMI_OBESE_II}");
+            Console.WriteLine($" Obese Class III = >{BMI_OBESE_III}");
+            Console.WriteLine();
+            Console.WriteLine(" All you need to use the Application is your height and weight" +
+                "which you can input using Imperial or Metric Units");
+            Console.WriteLine();
+            Console.WriteLine(" Imperial Units are:");
+            Console.WriteLine();
+            Console.WriteLine(" Height: Feet and Inches");
+            Console.WriteLine(" Weight: Stones and Pounds");
+            Console.WriteLine();
+            Console.WriteLine(" Metric Units are:");
+            Console.WriteLine();
+            Console.WriteLine(" Height: Metres and Centimetres");
+            Console.WriteLine(" Weight: Kilograms and Grams");
         }
 
         /// <summary>
@@ -104,15 +133,12 @@ namespace ConsoleAppProject.App02
         {
             if (unitChoice.Equals(UnitChoices.Imperial))
             {
-                heightSquared = userHeight * userHeight;
-                weight703 = userWeight * 703;
-                BMI = weight703 / heightSquared;
+                BMI = (userWeight * 703) / (userHeight * userHeight);
             }
 
             if (unitChoice.Equals(UnitChoices.Metric))
             {
-                heightSquared = userHeight * userHeight;
-                BMI = userWeight / heightSquared;
+                BMI = userWeight / (userHeight * userHeight);
             }
 
             CategoriseBMI();
@@ -123,7 +149,7 @@ namespace ConsoleAppProject.App02
         /// </summary>
         private void CategoriseBMI()
         {
-            if (BMI <= BMI_UNDERWEIGHT)
+            if (BMI < BMI_UNDERWEIGHT)
             {
                 Category = BMICategories.Underweight;
             }
