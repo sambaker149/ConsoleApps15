@@ -14,6 +14,8 @@ namespace ConsoleAppProject.App02
         Stones,
         Pounds,
         Metres,
-        Kilograms
+        Centimetres,
+        Kilograms,
+        Grams
     }
 }
