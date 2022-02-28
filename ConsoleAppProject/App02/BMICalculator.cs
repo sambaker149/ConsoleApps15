@@ -115,7 +115,7 @@ namespace ConsoleAppProject.App02
             Console.WriteLine($" Obese Class III = >{BMI_OBESE_III}");
             Console.WriteLine();
             Console.WriteLine(" All you need to use the Application is your height and weight" +
-                "which you can input using Imperial or Metric Units");
+                " which you can input using Imperial or Metric Units");
             Console.WriteLine();
             Console.WriteLine(" Imperial Units are:");
             Console.WriteLine(" Height: Feet and Inches");

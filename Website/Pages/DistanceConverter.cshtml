@@ -6,14 +6,15 @@
 
 <header class="jumbotron">
     <h1>Distance Converter</h1>
-    <h1>By Samuel Baker</h1>
+    <h2>by Derek Peacock</h2>
 </header>
 <section>
-    <h3>Select the Distance Units</h3>
-    <form>
+    <h3>Select Your Distance Units</h3>
+    <br/>
+    <form method="post">
         <p>
-            <span>Unit you would like to Convert From:</span>
-            <select asp-for="@Model.fromUnit">
+            <span>From Unit:</span>
+            <select asp-for="@Model.App01.fromUnit">
                 <option>@DistanceConverter.CENTIMETRES</option>
                 <option>@DistanceConverter.INCHES</option>
                 <option>@DistanceConverter.FEET</option>
@@ -23,8 +24,8 @@
             </select>
         </p>
         <p>
-            <span>Unit you would like to Convert To:</span>
-            <select asp-for="@Model.toUnit">
+            <span>To Unit:</span>
+            <select asp-for="@Model.App01.toUnit">
                 <option>@DistanceConverter.CENTIMETRES</option>
                 <option>@DistanceConverter.INCHES</option>
                 <option>@DistanceConverter.FEET</option>
@@ -32,6 +33,15 @@
                 <option>@DistanceConverter.KILOMETRES</option>
                 <option>@DistanceConverter.MILES</option>
             </select>
+        </p>
+
+        <input asp-for="@Model.Distance" type="text" 
+               placeholder="Enter your from distance" />
+
+        <input asp-for="@Model.App01.toDistance" type="text" 
+               readonly placeholder="To Distance"/>
+        <p>
+            <button type="submit">Calculate</button>
         </p>
     </form>
 </section>
