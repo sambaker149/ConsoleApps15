@@ -1,0 +1,37 @@
+﻿@page
+@model Website.Pages.DistanceConverterModel
+@using ConsoleAppProject.App01
+@{
+}
+
+<header class="jumbotron">
+    <h1>Distance Converter</h1>
+    <h1>By Samuel Baker</h1>
+</header>
+<section>
+    <h3>Select the Distance Units</h3>
+    <form>
+        <p>
+            <span>Unit you would like to Convert From:</span>
+            <select asp-for="@Model.fromUnit">
+                <option>@DistanceConverter.CENTIMETRES</option>
+                <option>@DistanceConverter.INCHES</option>
+                <option>@DistanceConverter.FEET</option>
+                <option>@DistanceConverter.METRES</option>
+                <option>@DistanceConverter.KILOMETRES</option>
+                <option>@DistanceConverter.MILES</option>
+            </select>
+        </p>
+        <p>
+            <span>Unit you would like to Convert To:</span>
+            <select asp-for="@Model.toUnit">
+                <option>@DistanceConverter.CENTIMETRES</option>
+                <option>@DistanceConverter.INCHES</option>
+                <option>@DistanceConverter.FEET</option>
+                <option>@DistanceConverter.METRES</option>
+                <option>@DistanceConverter.KILOMETRES</option>
+                <option>@DistanceConverter.MILES</option>
+            </select>
+        </p>
+    </form>
+</section>

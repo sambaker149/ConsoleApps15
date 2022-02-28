@@ -20,6 +20,13 @@ namespace ConsoleAppProject.App02
         public const int BMI_OBESE_II = 35;
         public const int BMI_OBESE_III = 40;
 
+        public const string UNDERWEIGHT = "Underweight";
+        public const string NORMAL = "Normal";
+        public const string OVERWEIGHT = "Overweight";
+        public const string CLASS_I_OBESE = "Class I Obese";
+        public const string CLASS_II_OBESE = "Class II Obese";
+        public const string CLASS_III_OBESE = "Class III Obese";
+
         private double heightInFeet;
         private double heightInInches;
         private double heightInMetres;
@@ -33,7 +40,8 @@ namespace ConsoleAppProject.App02
         private double userWeight;
 
         private UnitChoices unitChoice;
-        private BMICategories Category;
+
+        private string Category;
 
         private double BMI;
 
@@ -144,8 +152,8 @@ namespace ConsoleAppProject.App02
         {
             switch (choice)
             {
-                case 1: return UnitChoices.Imperial; break;
-                case 2: return UnitChoices.Metric; break;
+                case 1: return UnitChoices.Imperial; 
+                case 2: return UnitChoices.Metric;
 
                 default: return UnitChoices.NoUnit;
             }
@@ -166,8 +174,8 @@ namespace ConsoleAppProject.App02
 
             if (unitChoice.Equals(UnitChoices.Metric))
             {
-                userHeight = (heightInMetres * 100) + heightInCentimetres;
-                userWeight = (weightInKilograms * 1000) + weightInGrams;
+                userHeight = heightInMetres + (heightInCentimetres / 100);
+                userWeight = weightInKilograms + (weightInGrams / 1000);
                 BMI = userWeight / (userHeight * userHeight);
             }
 
@@ -181,27 +189,27 @@ namespace ConsoleAppProject.App02
         {
             if (BMI < BMI_UNDERWEIGHT)
             {
-                Category = BMICategories.Underweight;
+                Category = UNDERWEIGHT;
             }
             else if (BMI >= BMI_NORMAL && BMI < BMI_OVERWEIGHT)
             {
-                Category = BMICategories.Normal;
+                Category = NORMAL;
             }
             else if (BMI >= BMI_OVERWEIGHT && BMI < BMI_OBESE_I)
             {
-                Category = BMICategories.Overweight;
+                Category = OVERWEIGHT;
             }
             else if (BMI >= BMI_OBESE_I && BMI < BMI_OBESE_II)
             {
-                Category = BMICategories.Obese_ClassI;
+                Category = CLASS_I_OBESE;
             }
             else if (BMI >= BMI_OBESE_II && BMI < BMI_OBESE_III)
             {
-                Category = BMICategories.Obese_ClassII;
+                Category = CLASS_II_OBESE;
             }
             else if (BMI >= BMI_OBESE_III)
             {
-                Category = BMICategories.Obese_ClassIII;
+                Category = CLASS_III_OBESE;
             }
         }
 
@@ -212,7 +220,7 @@ namespace ConsoleAppProject.App02
         {
             Console.WriteLine();
             Console.WriteLine($" Your BMI is {BMI}. " +
-                $"You are in the {Category} range");
+                $"You are in the {Category} Range");
         }
     }
 }

@@ -29,11 +29,18 @@ namespace ConsoleAppProject.App01
         public const double METRES_IN_MILES = 1609.34;
         public const double MILES_IN_KILOMETRES = 0.621371;
 
-        private double fromDistance;
-        private double toDistance;
+        public const string CENTIMETRES = "Centimetres";
+        public const string INCHES = "Inches";
+        public const string FEET = "Feet";
+        public const string METRES = "Metres";
+        public const string KILOMETRES = "Kilometres";
+        public const string MILES = "Miles";
 
-        private DistanceUnits fromUnit;
-        private DistanceUnits toUnit;
+        public double fromDistance { get; set; }
+        public double toDistance { get; set; }
+
+        public DistanceUnits fromUnit { get; set; }
+        private DistanceUnits toUnit { get; set; }
 
         /// <summary>
         /// Output a heading
@@ -106,7 +113,7 @@ namespace ConsoleAppProject.App01
         /// <summary>
         /// Calculates distance using pre-set constant values based on chosen units
         /// </summary>
-        private void CalculateDistance()
+        public void CalculateDistance()
         {
             if (fromUnit == DistanceUnits.Inches &&
                 toUnit == DistanceUnits.Centimetres)
