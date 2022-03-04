@@ -221,6 +221,12 @@ namespace ConsoleAppProject.App02
             Console.WriteLine();
             Console.WriteLine($" Your BMI is {BMI}. " +
                 $"You are in the {Category} Range");
+            Console.WriteLine();
+            Console.WriteLine(" Please Note: If you are Black, Asian or in " +
+                "another Minority Ethnic group, you are at an increased risk " +
+                "from BMI");
+            Console.WriteLine();
+            Console.WriteLine(" Younger children are also at increased risk");
         }
     }
 }
