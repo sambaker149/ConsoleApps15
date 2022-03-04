@@ -42,14 +42,6 @@ namespace ConsoleAppProject.App01
         public DistanceUnits FromUnit { get; set; }
         public DistanceUnits ToUnit { get; set; }
 
-        public DistanceUnits DistanceUnits
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         /// <summary>
         /// Output a heading
         /// Prompt user as  to what units they want to convert between 
