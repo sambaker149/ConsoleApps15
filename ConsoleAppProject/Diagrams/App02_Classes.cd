@@ -20,10 +20,6 @@
       <HashCode>ARHCABAEACgBAQAoAKgAICAQBBAAIEAAGKAAACAACAI=</HashCode>
       <FileName>App02\BMICalculator.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="UnitChoices" />
-      <Property Name="UnitsList" />
-    </ShowAsAssociation>
   </Class>
   <Enum Name="ConsoleAppProject.App02.UnitChoices">
     <Position X="7.25" Y="0.5" Width="1.5" />

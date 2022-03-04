@@ -45,22 +45,6 @@ namespace ConsoleAppProject.App02
 
         private double BMI;
 
-        public UnitChoices UnitChoices
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public UnitsList UnitsList
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         /// <summary>
         /// Output a heading
         /// Prompt user as  to what units they want to convert between 
