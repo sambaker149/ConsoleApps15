@@ -1,4 +1,3 @@
-using System;
 using ConsoleAppProject.App01;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,11 +9,13 @@ namespace Web.Pages
         [BindProperty]
         public DistanceConverter App01 { get; set; }
 
+        // Set the html up
         public void OnGet()
         {
             ViewData["Message"] = "On Get Called";
         }
 
+        // click on submit button
         public void OnPost()
         {
             App01.ConvertDistance();
