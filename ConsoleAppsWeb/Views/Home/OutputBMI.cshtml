@@ -1,0 +1,23 @@
+﻿@Model double
+@using ConsoleAppProject.App02;
+
+@{
+    ViewData["Tile"] = "BMI Output";
+}
+@model double
+@using ConsoleAppProject.App02
+@{
+    BMICalculator calculator = new BMICalculator();
+    calculator.Index = Model;
+}
+
+<header class="jumbotron">
+    <h1>BMI Output</h1>
+    <h2>By Samuel Baker</h2>
+</header>
+<section>
+    <h2>Your BMI Index</h2>
+    <p class="text-lead">
+        @calculator.OutputBMI()
+    </p>
+</section>

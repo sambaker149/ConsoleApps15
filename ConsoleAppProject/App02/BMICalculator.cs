@@ -27,23 +27,19 @@ namespace ConsoleAppProject.App02
         public const string CLASS_II_OBESE = "Class II Obese";
         public const string CLASS_III_OBESE = "Class III Obese";
 
-        private double heightInFeet;
-        private double heightInInches;
-        private double heightInMetres;
-        private double heightInCentimetres;
-        private double weightInStones;
-        private double weightInPounds;
-        private double weightInKilograms;
-        private double weightInGrams;
+        public double Feet { get; set; }
+        public double Inches { get; set; }
+        public double Metres { get; set; }
+        public double Centimetres { get; set; }
+        public double Stones { get; set; }
+        public double Pounds { get; set; }
+        public double Kilograms { get; set; }
 
-        private double userHeight;
-        private double userWeight;
+        public UnitChoices UnitChoice { get; set; }
 
-        private UnitChoices unitChoice;
+        public string Category { get; set; }
 
-        private string Category;
-
-        private double BMI;
+        public double BMI { get; set; }
 
         /// <summary>
         /// Output a heading
@@ -56,8 +52,8 @@ namespace ConsoleAppProject.App02
             OutputIntroduction();
 
             Console.WriteLine();
-            unitChoice = SelectUnit(" Please Choose whether to use Imperial or Metric Units");
-            Console.WriteLine($" You have chosen {unitChoice} Units");
+            UnitChoice = SelectUnit(" Please Choose whether to use Imperial or Metric Units");
+            Console.WriteLine($" You have chosen {UnitChoice} Units");
             Console.WriteLine();
 
             InputMeasurement();
@@ -72,30 +68,26 @@ namespace ConsoleAppProject.App02
         /// </summary>
         private void InputMeasurement()
         {
-            if (unitChoice.Equals(UnitChoices.Imperial))
+            if (UnitChoice.Equals(UnitChoices.Imperial))
             {
                 Console.WriteLine($" Please enter your Height in {UnitsList.Feet} and " +
                     $"{UnitsList.Inches}");
-                heightInFeet = ConsoleHelper.InputNumber($" {UnitsList.Feet} > ");
-                heightInInches = ConsoleHelper.InputNumber($" {UnitsList.Inches} > ");
+                Feet = ConsoleHelper.InputNumber($" {UnitsList.Feet} > ");
+                Inches = ConsoleHelper.InputNumber($" {UnitsList.Inches} > ");
                 Console.WriteLine();
                 Console.WriteLine($" Please enter your Weight in {UnitsList.Stones} and" +
                     $" {UnitsList.Pounds}");
-                weightInStones = ConsoleHelper.InputNumber($" {UnitsList.Stones} > ");
-                weightInPounds = ConsoleHelper.InputNumber($" {UnitsList.Pounds} > ");
+                Stones = ConsoleHelper.InputNumber($" {UnitsList.Stones} > ");
+                Pounds = ConsoleHelper.InputNumber($" {UnitsList.Pounds} > ");
             }
 
-            if (unitChoice.Equals(UnitChoices.Metric))
+            if (UnitChoice.Equals(UnitChoices.Metric))
             {
-                Console.WriteLine($" Please enter your Height in {UnitsList.Metres} and " +
-                    $"{UnitsList.Centimetres}");
-                heightInMetres = ConsoleHelper.InputNumber($" {UnitsList.Metres} > ");
-                heightInCentimetres = ConsoleHelper.InputNumber($" {UnitsList.Centimetres} > ");
+                Console.WriteLine($" Please enter your Height in {UnitsList.Centimetres}");
+                Centimetres = ConsoleHelper.InputNumber($" {UnitsList.Centimetres} > ");
                 Console.WriteLine();
-                Console.WriteLine($" Please enter your Weight in {UnitsList.Kilograms} and " +
-                    $"{UnitsList.Grams}");
-                weightInKilograms = ConsoleHelper.InputNumber($" {UnitsList.Kilograms} > ");
-                weightInGrams = ConsoleHelper.InputNumber($" {UnitsList.Grams} > ");
+                Console.WriteLine($" Please enter your Weight in {UnitsList.Grams}");
+                Kilograms = ConsoleHelper.InputNumber($" {UnitsList.Kilograms} > ");
             }
         }
 
@@ -122,8 +114,8 @@ namespace ConsoleAppProject.App02
             Console.WriteLine(" Weight: Stones and Pounds");
             Console.WriteLine();
             Console.WriteLine(" Metric Units are:");
-            Console.WriteLine(" Height: Metres and Centimetres");
-            Console.WriteLine(" Weight: Kilograms and Grams");
+            Console.WriteLine(" Height: Centimetres");
+            Console.WriteLine(" Weight: Kilograms");
         }
 
         /// <summary>
@@ -165,18 +157,16 @@ namespace ConsoleAppProject.App02
         /// </summary>
         public void CalculateBMI()
         {
-            if (unitChoice.Equals(UnitChoices.Imperial))
+            if (UnitChoice.Equals(UnitChoices.Imperial))
             {
-                userHeight = (heightInFeet * 12) + heightInInches;
-                userWeight = (weightInStones * 14) + weightInPounds;
-                BMI = (userWeight * 703) / (userHeight * userHeight);
+                Inches = (Feet * 12) + Inches;
+                BMI = ((Stones * 14) + Pounds) * 703 / (Inches * Inches);
             }
 
-            if (unitChoice.Equals(UnitChoices.Metric))
+            if (UnitChoice.Equals(UnitChoices.Metric))
             {
-                userHeight = heightInMetres + (heightInCentimetres / 100);
-                userWeight = weightInKilograms + (weightInGrams / 1000);
-                BMI = userWeight / (userHeight * userHeight);
+                Metres = Centimetres / 100;
+                BMI = Kilograms / (Metres * Metres);
             }
 
             CategoriseBMI();
@@ -216,7 +206,7 @@ namespace ConsoleAppProject.App02
         /// <summary>
         /// Print out the user's BMI and additional information
         /// </summary>
-        private void OutputBMI()
+        public void OutputBMI()
         {
             Console.WriteLine();
             Console.WriteLine($" Your BMI is {BMI}. " +
