@@ -8,10 +8,17 @@
     <h1>Distance Converter</h1>
     <h2>By Samuel Baker</h2>
 </header>
+<header>
+    <p>
+        This Application is designed to Convert Distance according to 
+        the Units you choose to convert between and the Distance you 
+        enter
+    </p>
+</header>
 <section>
     <form method="post">
         <p>
-            <h4>Please Select a Unit to Convert From:</h4>
+            <h4>Please Select a Unit to Convert From</h4>
             <select asp-for="@Model.App01.FromUnit">
                 <option>@DistanceConverter.CENTIMETRES</option>
                 <option>@DistanceConverter.INCHES</option>
@@ -26,7 +33,7 @@
             <input asp-for="App01.FromDistance" type="text"/>
         </p>
         <p>
-            <h4>Please Select a Unit to Convert To:</h4>
+            <h4>Please Select a Unit to Convert To</h4>
             <select asp-for="@Model.App01.ToUnit">
                 <option>@DistanceConverter.CENTIMETRES</option>
                 <option>@DistanceConverter.INCHES</option>

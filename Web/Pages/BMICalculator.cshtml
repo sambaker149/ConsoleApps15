@@ -8,42 +8,43 @@
     <h1>BMI Calculator</h1>
     <h2>By Samuel Baker</h2>
 </header>
+<header>
     <p>
-        This Application will use your height and weight to calculate 
-        a BMI Index to enable you to classify your health risks 
+        This Application is designed to Calculate your BMI in accordance 
+        with the World Health Organisation figures for BMI to help you 
+        Classify your Health Risks
     </p>
 </header>
 <section>
     <form method="post">
         <h2>Height</h2>
         <p>
-            Please enter your current height in whole numbers,
-            using imperial or metric units
+            Please enter your Height in Whole Numbers using 
+            Imperial (Feet/Inches) or Metric (Centimetres) Units
         </p>
         <p>
             <h3>Imperial Units</h3>
             <input asp-for="App02.Feet" type="text" 
-            placeholder="Feet" value="5"/>
+            placeholder="Feet" value=""/>
             <input asp-for="App02.Inches" type="text" 
-            placeholder="Inches" value="6"/>
+            placeholder="Inches" value=""/>
         </p>
         <p>
             <h3>Metric Units</h3>
             <input asp-for="App02.Centimetres" type="text" 
             placeholder="Centimetres"/>
         </p>
-
         <h2>Weight</h2>
         <p>
-            Please enter your current weight in whole numbers,
-            using imperial or metric units
+            Please enter your Weight in Whole Numbers using 
+            Imperial (Stones/Pounds) or Metric (Kilograms) Units
         </p>
         <p>
             <h3>Imperial Units</h3>
             <input asp-for="App02.Stones" type="text" 
-            placeholder="Stones" value="10"/>
+            placeholder="Stones" value=""/>
             <input asp-for="App02.Pounds" type="text" 
-            placeholder="Pounds" value="6"/>
+            placeholder="Pounds" value=""/>
         </p>
         <p>
             <h3>Metric Units</h3>
@@ -52,6 +53,10 @@
         </p>
         <p>
             <button class="btn btn-success" type="submit">Calculate</button>
+        </p>
+        <br/>
+        <p class="lead alert alert-primary">
+            @ViewData["Message"]
         </p>
     </form>
 </section>

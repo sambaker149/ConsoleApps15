@@ -175,7 +175,7 @@ namespace ConsoleAppProject.App02
         /// <summary>
         /// Calculates the BMI category using the calculated BMI
         /// </summary>
-        private void CategoriseBMI()
+        public void CategoriseBMI()
         {
             if (BMI < BMI_UNDERWEIGHT)
             {
