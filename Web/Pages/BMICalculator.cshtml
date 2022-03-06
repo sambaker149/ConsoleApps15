@@ -1,0 +1,57 @@
+﻿@page
+@model Web.Pages.BMICalculatorModel
+@using ConsoleAppProject.App02
+@{
+}
+
+<header class="jumbotron">
+    <h1>BMI Calculator</h1>
+    <h2>By Samuel Baker</h2>
+</header>
+    <p>
+        This Application will use your height and weight to calculate 
+        a BMI Index to enable you to classify your health risks 
+    </p>
+</header>
+<section>
+    <form method="post">
+        <h2>Height</h2>
+        <p>
+            Please enter your current height in whole numbers,
+            using imperial or metric units
+        </p>
+        <p>
+            <h3>Imperial Units</h3>
+            <input asp-for="App02.Feet" type="text" 
+            placeholder="Feet" value="5"/>
+            <input asp-for="App02.Inches" type="text" 
+            placeholder="Inches" value="6"/>
+        </p>
+        <p>
+            <h3>Metric Units</h3>
+            <input asp-for="App02.Centimetres" type="text" 
+            placeholder="Centimetres"/>
+        </p>
+
+        <h2>Weight</h2>
+        <p>
+            Please enter your current weight in whole numbers,
+            using imperial or metric units
+        </p>
+        <p>
+            <h3>Imperial Units</h3>
+            <input asp-for="App02.Stones" type="text" 
+            placeholder="Stones" value="10"/>
+            <input asp-for="App02.Pounds" type="text" 
+            placeholder="Pounds" value="6"/>
+        </p>
+        <p>
+            <h3>Metric Units</h3>
+            <input asp-for="App02.Kilograms" type="text" 
+            placeholder="Kilograms"/>
+        </p>
+        <p>
+            <button class="btn btn-success" type="submit">Calculate</button>
+        </p>
+    </form>
+</section>

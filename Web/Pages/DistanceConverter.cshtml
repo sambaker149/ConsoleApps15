@@ -1,4 +1,47 @@
 ﻿@page
-@model Web.Pages.Index1Model
+@model Web.Pages.DistanceConverterModel
+@using ConsoleAppProject.App01
 @{
 }
+
+<header class="jumbotron">
+    <h1>Distance Converter</h1>
+    <h2>By Samuel Baker</h2>
+</header>
+<section>
+    <form method="post">
+        <p>
+            <h4>Please Select a Unit to Convert From:</h4>
+            <select asp-for="@Model.App01.FromUnit">
+                <option>@DistanceConverter.CENTIMETRES</option>
+                <option>@DistanceConverter.INCHES</option>
+                <option>@DistanceConverter.FEET</option>
+                <option>@DistanceConverter.METRES</option>
+                <option>@DistanceConverter.KILOMETRES</option>
+                <option>@DistanceConverter.MILES</option>
+            </select>
+        </p>
+        <h4>Please enter the Distance to Convert</h4>
+        <p>
+            <input asp-for="App01.FromDistance" type="text"/>
+        </p>
+        <p>
+            <h4>Please Select a Unit to Convert To:</h4>
+            <select asp-for="@Model.App01.ToUnit">
+                <option>@DistanceConverter.CENTIMETRES</option>
+                <option>@DistanceConverter.INCHES</option>
+                <option>@DistanceConverter.FEET</option>
+                <option>@DistanceConverter.METRES</option>
+                <option>@DistanceConverter.KILOMETRES</option>
+                <option>@DistanceConverter.MILES</option>
+            </select>
+        </p>
+        <p>
+            <button class="btn btn-success">Calculate</button>
+        </p>
+        <br/>
+        <p class="lead alert alert-primary">
+            @ViewData["Message"]
+        </p>
+    </form>
+</section>
