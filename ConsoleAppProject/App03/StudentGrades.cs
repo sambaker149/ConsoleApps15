@@ -28,60 +28,69 @@ namespace ConsoleAppProject.App03
         public void Run()
         {
             Students = new string[]
-            { "Sam", "Robert", "Kai", "Ethan"};
+            { 
+                "Sam", 
+                "Nicola",
+                "Robert",
+                "Esther",
+                "Kai", 
+                "Kelsey",
+                "Ethan",
+                "Amy",
+                "Lewis",
+                "Catherine"
+            };
+
             Marks = new int[Students.Length];
 
             ConsoleHelper.OutputHeading("App03 - Student Marks");
 
             InputMarks();
-            //ConvertToGrades();
             OutputGrades();
         }
 
         private void InputMarks()
         {
             Console.WriteLine(" Please enter a Mark for each Student");
-            int Index = 0;
-
-            foreach(string name in Students)
+            
+            int index = 0;
+            foreach (var student in Students)
             {
-                int mark = (int)ConsoleHelper.InputNumber($" Enter Mark for {name} > ");
-                Marks[Index] = mark;
-            }
+                int mark = (int)ConsoleHelper.InputNumber(
+                    $" Enter {student}'s Mark > ", 0, 100);
+
+                Marks[index] = mark;
+                index++;
+            };
+
+            Console.WriteLine();
         }
 
-        public Grades ConvertToGrades(int mark)
+        public Grades ConvertToGrade(int mark)
         {
-            if (mark >= MIN_F && mark <= (MIN_D - 1))
-            {
+            if (mark >= MIN_F && mark <= MIN_D - 1)
                 return Grades.F;
-            }
-            else if (mark >= MIN_D && mark <= (MIN_C - 1))
-            {
+            if (mark >= MIN_D && mark <= MIN_C - 1)
                 return Grades.D;
-            }
-            else if (mark >= MIN_C && mark <= (MIN_B - 1))
-            {
+            if (mark >= MIN_C && mark <= MIN_B - 1)
                 return Grades.C;
-            }
-            else if (mark >= MIN_B && mark <= (MIN_A - 1))
-            {
+            if (mark >= MIN_B && mark <= MIN_A - 1)
                 return Grades.B;
-            }
-            else if (mark >= MIN_A && mark <= MAX)
-            {
+            if (mark >= MIN_A && mark <= MAX)
                 return Grades.A;
-            }
+
             else return Grades.X;
         }
 
         private void OutputGrades()
         {
-            for(int i = 0; i < Marks.Length; i++)
+            Console.WriteLine(" Results for each Student");
+
+            for (int i = 0; i < 10; i++)
             {
                 int mark = Marks[i];
-                Grades grade = ConvertToGrades(mark);
-                Console.WriteLine($" {Students[i]}'s Mark = {Marks[i]}, Grade = {grade}");
+                Grades grade = ConvertToGrade(mark);
+                Console.WriteLine($" {Students[i]}'s Mark = {mark}, Grade = {grade}");
             }
         }
     }

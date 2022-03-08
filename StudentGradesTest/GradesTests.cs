@@ -10,7 +10,7 @@ namespace StudentGradesTest
         public void TestConvertHighestFail()
         {
             StudentGrades app03 = new StudentGrades();
-            Grades actualGrade = app03.ConvertToGrades(39);
+            Grades actualGrade = app03.ConvertToGrade(39);
             Assert.AreEqual(actualGrade, Grades.F);
         }
     }
