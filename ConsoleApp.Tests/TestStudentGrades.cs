@@ -134,8 +134,8 @@ namespace ConsoleApp.Tests
         public void TestGradeProfile()
         {
             studentGrades.Marks = statsMarks;
-            bool expectedProfile = false;
             studentGrades.CalculateGradeProfile();
+            bool expectedProfile;
             expectedProfile = ((studentGrades.GradeProfile[0] == 3) &&
                                (studentGrades.GradeProfile[1] == 1) &&
                                (studentGrades.GradeProfile[2] == 1) &&

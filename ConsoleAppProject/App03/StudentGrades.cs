@@ -186,7 +186,7 @@ namespace ConsoleAppProject.App03
             Console.WriteLine(" Grade Statistics");
             Console.WriteLine(" ----------------");
             Console.WriteLine($" Minimum Mark is {Minimum}");
-            Console.WriteLine($" Maximim Mark is {Maximum}");
+            Console.WriteLine($" Maximum Mark is {Maximum}");
             Console.WriteLine($" Mean Mark is {Mean}");
         }
 
