@@ -16,12 +16,12 @@ namespace ConsoleAppProject.App03
     /// </author>
     public class StudentGrades
     {
-        public const int MIN_F = 0;
-        public const int MIN_D = 40;
-        public const int MIN_C = 50;
-        public const int MIN_B = 60;
-        public const int MIN_A = 70;
-        public const int MAX = 100;
+        public const int lowestF = 0;
+        public const int lowestD = 40;
+        public const int lowestC = 50;
+        public const int lowestB = 60;
+        public const int lowestA = 70;
+        public const int maxMark = 100;
 
         public string[] Students { get; set; }
         public int[] Marks { get; set; }
@@ -50,8 +50,11 @@ namespace ConsoleAppProject.App03
                 "Catherine"
             };
 
-            GradeProfile = new int[(int)Grades.A + 1];
-            Marks = new int[Students.Length];
+            GradeProfile = new int[(int)Grades.A];
+            Marks = new int[]
+            {
+                10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+            };
 
             OutputMenu();
         }
@@ -126,15 +129,15 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public Grades ConvertToGrade(int mark)
         {
-            if (mark >= MIN_F && mark <= MIN_D - 1)
+            if (mark >= lowestF && mark <= lowestD - 1)
                 return Grades.F;
-            if (mark >= MIN_D && mark <= MIN_C - 1)
+            if (mark >= lowestD && mark <= lowestC - 1)
                 return Grades.D;
-            if (mark >= MIN_C && mark <= MIN_B - 1)
+            if (mark >= lowestC && mark <= lowestB - 1)
                 return Grades.C;
-            if (mark >= MIN_B && mark <= MIN_A - 1)
+            if (mark >= lowestB && mark <= lowestA - 1)
                 return Grades.B;
-            if (mark >= MIN_A && mark <= MAX)
+            if (mark >= lowestA && mark <= maxMark)
                 return Grades.A;
 
             else return Grades.X;
@@ -200,7 +203,7 @@ namespace ConsoleAppProject.App03
             foreach (int mark in Marks)
             {
                 Grades grade = ConvertToGrade(mark);
-                GradeProfile[(int)grade]++;
+                GradeProfile[(int)grade-1]++;
             }
 
             OutputGradeProfile();
