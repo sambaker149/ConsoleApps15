@@ -67,16 +67,16 @@ namespace ConsoleAppProject.App03
                 " Quit" 
             };
 
-            int choiceNo;
+            int choice;
 
             do
             {
                 ConsoleHelper.OutputHeading("App03 - Student Marks");
 
-                choiceNo = ConsoleHelper.SelectChoice(choices);
+                choice = ConsoleHelper.SelectChoice(choices);
                 Console.WriteLine();
 
-                switch (choiceNo)
+                switch (choice)
                 {
                     case 1: 
                         InputMarks(); 
@@ -95,7 +95,7 @@ namespace ConsoleAppProject.App03
                         break;
                 }
 
-            } while (choiceNo != 5);
+            } while (choice != 5);
         }
 
         /// <summary>

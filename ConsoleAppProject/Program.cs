@@ -30,7 +30,8 @@ namespace ConsoleAppProject
             {
                 " Distance Converter",
                 " BMI Calculator",
-                " Student Grades"
+                " Student Grades",
+                " Quit"
             };
         
             Console.WriteLine(" Please Choose which Application You would like to Use");
@@ -57,6 +58,7 @@ namespace ConsoleAppProject
                     break;
                 
             }
+            while (choice != 4);
         }
     }
 }
