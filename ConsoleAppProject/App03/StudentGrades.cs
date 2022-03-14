@@ -107,14 +107,14 @@ namespace ConsoleAppProject.App03
             Console.WriteLine(" Please enter a Mark for each Student");
             Console.WriteLine(" ------------------------------------");
 
-            int index = 0;
+            int i = 0;
             foreach (var student in Students)
             {
                 int mark = (int)ConsoleHelper.InputNumber(
                     $" Enter {student}'s Mark > ", 0, 100);
 
-                Marks[index] = mark;
-                index++;
+                Marks[i] = mark;
+                i++;
             };
 
             Console.WriteLine();
