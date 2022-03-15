@@ -46,7 +46,7 @@ namespace ConsoleAppProject.App03
             GradeProfile = new int[(int)Grades.A];
             Marks = new int[]
             {
-                10, 20, 30, 40, 50, 
+                10, 20, 30, 40, 50,
                 60, 70, 80, 90, 100
             };
 
@@ -137,13 +137,13 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public Grades ConvertToGrade(int mark)
         {
-            if (mark >= lowestF && mark <= lowestD-1)
+            if (mark >= lowestF && mark <= lowestD - 1)
                 return Grades.F;
-            if (mark >= lowestD && mark <= lowestC-1)
+            if (mark >= lowestD && mark <= lowestC - 1)
                 return Grades.D;
-            if (mark >= lowestC && mark <= lowestB-1)
+            if (mark >= lowestC && mark <= lowestB - 1)
                 return Grades.C;
-            if (mark >= lowestB && mark <= lowestA-1)
+            if (mark >= lowestB && mark <= lowestA - 1)
                 return Grades.B;
             if (mark >= lowestA && mark <= maxMark)
                 return Grades.A;
@@ -181,7 +181,7 @@ namespace ConsoleAppProject.App03
 
             double total = 0;
 
-            foreach(int mark in Marks)
+            foreach (int mark in Marks)
             {
                 if (mark > Maximum) Maximum = mark;
                 if (mark < Minimum) Minimum = mark;
@@ -209,10 +209,10 @@ namespace ConsoleAppProject.App03
             Console.WriteLine($" Mean Mark is {Mean}");
         }
 
-       /// <summary>
-       /// Calculates the grade profile based on the mark
-       /// awarded to each student
-       /// </summary>
+        /// <summary>
+        /// Calculates the grade profile based on the mark
+        /// awarded to each student
+        /// </summary>
         public void CalculateGradeProfile()
         {
             for (int i = 0; i < GradeProfile.Length; i++)
