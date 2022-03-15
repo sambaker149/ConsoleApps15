@@ -9,10 +9,11 @@ namespace ConsoleAppProject.App03
     /// This App will prompt the user to input a grade
     /// for each student contained within a students array
     /// list and it will output the results and grade achieved
-    /// for each student
+    /// for each student, as well as relevant statistics and
+    /// grade profile
     /// </summary>
     /// <author>
-    /// Samuel Baker 08/03/2022
+    /// Samuel Baker 15/03/2022
     /// </author>
     public class StudentGrades
     {
@@ -38,40 +39,46 @@ namespace ConsoleAppProject.App03
         {
             Students = new string[]
             {
-                "Sam",
-                "Nicola",
-                "Robert",
-                "Esther",
-                "Kai",
-                "Kelsey",
-                "Ethan",
-                "Amy",
-                "Lewis",
-                "Catherine"
+                "Sam", "Nicola", "Robert", "Esther", "Kai",
+                "Kelsey", "Ethan", "Amy", "Lewis", "Catherine"
             };
 
             GradeProfile = new int[(int)Grades.A];
             Marks = new int[]
             {
-                10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+                10, 20, 30, 40, 50, 
+                60, 70, 80, 90, 100
             };
 
-            OutputMenu();
+            OutputMenuChoices();
         }
 
-        public void OutputMenu()
+        /// <summary>
+        /// Outputs the different choices of the application's 
+        /// functions for the user to choose from
+        /// </summary>
+        public void OutputMenuChoices()
         {
-            string[] choices = 
+            string[] choices =
             {
                 " Input Marks",
                 " Output Grades",
                 " Output Statistics",
                 " Output Grade Profile",
-                " Quit" 
+                " Quit"
             };
 
             int choice;
+            choice = ExecuteChoice(choices);
+        }
 
+        /// <summary>
+        /// Prompts the user for their choice of application
+        /// Executes the function based on the user's choice
+        /// </summary>
+        private int ExecuteChoice(string[] choices)
+        {
+            int choice;
             do
             {
                 ConsoleHelper.OutputHeading("App03 - Student Marks");
@@ -81,17 +88,17 @@ namespace ConsoleAppProject.App03
 
                 switch (choice)
                 {
-                    case 1: 
-                        InputMarks(); 
+                    case 1:
+                        InputMarks();
                         break;
-                    case 2: 
-                        OutputGrades(); 
+                    case 2:
+                        OutputGrades();
                         break;
                     case 3:
-                        CalculateStatistics(); 
+                        CalculateStatistics();
                         break;
                     case 4:
-                        CalculateGradeProfile();  
+                        CalculateGradeProfile();
                         break;
 
                     default:
@@ -99,6 +106,7 @@ namespace ConsoleAppProject.App03
                 }
 
             } while (choice != 5);
+            return choice;
         }
 
         /// <summary>
@@ -129,13 +137,13 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public Grades ConvertToGrade(int mark)
         {
-            if (mark >= lowestF && mark <= lowestD - 1)
+            if (mark >= lowestF && mark <= lowestD-1)
                 return Grades.F;
-            if (mark >= lowestD && mark <= lowestC - 1)
+            if (mark >= lowestD && mark <= lowestC-1)
                 return Grades.D;
-            if (mark >= lowestC && mark <= lowestB - 1)
+            if (mark >= lowestC && mark <= lowestB-1)
                 return Grades.C;
-            if (mark >= lowestB && mark <= lowestA - 1)
+            if (mark >= lowestB && mark <= lowestA-1)
                 return Grades.B;
             if (mark >= lowestA && mark <= maxMark)
                 return Grades.A;
@@ -162,6 +170,10 @@ namespace ConsoleAppProject.App03
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Calculates the minimum mark, maximim mark and mean mark
+        /// based on each student's mark
+        /// </summary>
         public void CalculateStatistics()
         {
             Minimum = Marks[0];
@@ -184,6 +196,10 @@ namespace ConsoleAppProject.App03
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Outputs the minimum, maximum and mean marks that
+        /// have been calculated based on each mark
+        /// </summary>
         private void OutputStatistics()
         {
             Console.WriteLine(" Grade Statistics");
@@ -193,6 +209,10 @@ namespace ConsoleAppProject.App03
             Console.WriteLine($" Mean Mark is {Mean}");
         }
 
+       /// <summary>
+       /// Calculates the grade profile based on the mark
+       /// awarded to each student
+       /// </summary>
         public void CalculateGradeProfile()
         {
             for (int i = 0; i < GradeProfile.Length; i++)
@@ -209,13 +229,16 @@ namespace ConsoleAppProject.App03
             OutputGradeProfile();
         }
 
+        /// <summary>
+        /// Outputs the grade profile calculates using the marks
+        /// each student has achieved
+        /// </summary>
         private void OutputGradeProfile()
         {
             Console.WriteLine(" Grade Profile");
             Console.WriteLine(" -------------");
 
             Grades grade = Grades.F;
-
             foreach (int count in GradeProfile)
             {
                 int percentage = count * 100 / Marks.Length;
