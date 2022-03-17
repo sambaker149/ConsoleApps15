@@ -225,9 +225,8 @@ namespace ConsoleAppProject.App03
                 Grades grade = ConvertToGrade(mark);
                 GradeProfile[(int)grade-1]++;
             }
-
-            OutputGradeProfile();
         }
+
 
         /// <summary>
         /// Outputs the grade profile calculates using the marks
