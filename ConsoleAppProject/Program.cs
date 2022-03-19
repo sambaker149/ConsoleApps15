@@ -16,6 +16,14 @@ namespace ConsoleAppProject
     /// </summary>
     public class Program
     {
+        public StudentGrades StudentGrades
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
