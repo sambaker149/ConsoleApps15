@@ -2,13 +2,13 @@
 @model Web.Pages.Students.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add Student";
 }
 
-<h1>Create</h1>
-
-<h4>Student</h4>
-<hr />
+<h1>Add Student</h1>
+<section>
+<h4>Add a New Student</h4>
+<hr/>
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -23,16 +23,19 @@
                 <input asp-for="Student.Marks" class="form-control" />
                 <span asp-validation-for="Student.Marks" class="text-danger"></span>
             </div>
+            @*<div class="form-group">
+                <label asp-for="Student.Grades" class="control-label"></label>
+                <select asp-for="Student.Grades" class="form-control"></select>
+                <span asp-validation-for="Student.Grades" class="text-danger"></span>
+            </div>*@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" /> |
+                <a class="btn btn-secondary" asp-page="./Index">Back to List</a>
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-page="./StudentMarks">Back to List</a>
-</div>
+</section>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

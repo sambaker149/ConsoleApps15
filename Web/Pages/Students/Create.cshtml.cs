@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ConsoleAppProject.App03;
 using Web.Data;
-using Web.Students;
-using Web.Students.Models;
 
 namespace Web.Pages.Students
 {
@@ -40,7 +39,7 @@ namespace Web.Pages.Students
             _context.Student.Add(Student);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./StudentMarks");
+            return RedirectToPage("./Index");
         }
     }
 }

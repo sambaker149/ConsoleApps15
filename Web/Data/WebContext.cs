@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Web.Students;
+using ConsoleAppProject.App03;
 
 namespace Web.Data
 {
@@ -15,6 +15,6 @@ namespace Web.Data
         {
         }
 
-        public DbSet<Web.Students.Models.Student> Student { get; set; }
+        public DbSet<ConsoleAppProject.App03.Student> Student { get; set; }
     }
 }

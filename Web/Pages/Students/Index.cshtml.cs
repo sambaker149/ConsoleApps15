@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using ConsoleAppProject.App03;
 using Web.Data;
-using Web.Students;
-using Web.Students.Models;
 
 namespace Web.Pages.Students
 {
-    public class StudentGradesModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly Web.Data.WebContext _context;
 
-        public StudentGradesModel(Web.Data.WebContext context)
+        public IndexModel(Web.Data.WebContext context)
         {
             _context = context;
         }

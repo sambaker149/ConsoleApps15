@@ -11,7 +11,7 @@ using Web.Data;
 namespace Web.Migrations
 {
     [DbContext(typeof(WebContext))]
-    [Migration("20220317175606_InitialCreate")]
+    [Migration("20220319221012_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,23 +24,24 @@ namespace Web.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Web.Models.Student", b =>
+            modelBuilder.Entity("ConsoleAppProject.App03.Student", b =>
                 {
-                    b.Property<int>("StudentID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Grades")
+                        .HasColumnType("int");
 
                     b.Property<int>("Marks")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("StudentID");
+                    b.HasKey("Id");
 
                     b.ToTable("Student");
                 });

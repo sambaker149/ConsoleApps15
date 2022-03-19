@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Web.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<WebContext>(options =>
-       options.UseSqlServer(builder.Configuration.GetConnectionString("WebContext")));
+
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WebContext")));
 
 var app = builder.Build();
 

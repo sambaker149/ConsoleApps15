@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ConsoleAppProject.App03;
 using Web.Data;
-using Web.Students;
-using Web.Students.Models;
 
 namespace Web.Pages.Students
 {
@@ -32,7 +31,7 @@ namespace Web.Pages.Students
                 return NotFound();
             }
 
-            Student = await _context.Student.FirstOrDefaultAsync(m => m.StudentID == id);
+            Student = await _context.Student.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Student == null)
             {
@@ -58,7 +57,7 @@ namespace Web.Pages.Students
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentExists(Student.StudentID))
+                if (!StudentExists(Student.Id))
                 {
                     return NotFound();
                 }
@@ -68,12 +67,12 @@ namespace Web.Pages.Students
                 }
             }
 
-            return RedirectToPage("./StudentMarks");
+            return RedirectToPage("./Index");
         }
 
         private bool StudentExists(int id)
         {
-            return _context.Student.Any(e => e.StudentID == id);
+            return _context.Student.Any(e => e.Id == id);
         }
     }
 }
