@@ -6,7 +6,7 @@
     ViewData["Title"] = "Grade Analysis";
 }
 
-@*<head>
+<head>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">// Load google charts
         google.charts.load('current', { 'packages': ['corechart'] });
@@ -15,11 +15,11 @@
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Grade', 'Number of Students'],
-                ['Grade A', @Model.A],
-                ['Grade B', @Model.B],
-                ['Grade C', @Model.C],
-                ['Grade D', @Model.D],
-                ['Grade F', @Model.F]
+                ['Grade A', @Model.App03.GradeProfile[0]],
+                ['Grade B', @Model.App03.GradeProfile[1]],
+                ['Grade C', @Model.App03.GradeProfile[2]],
+                ['Grade D', @Model.App03.GradeProfile[3]],
+                ['Grade F', @Model.App03.GradeProfile[4]]
             ]);
             // Optional; add a title and set the width and height of the chart
             var options = {
@@ -28,13 +28,13 @@
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
             chart.draw(data, options);
         }</script>
-</head>*@
+</head>
 <section>
 <h2>Stastics</h2>
     <table class="table table-bordered table-hover">
         <thead>
             <tr class="text-center table-success">
-                <th>Number of Students</th> 
+                <th>Number of Students</th>
                 <th>Minimum Mark</th>
                 <th>Maximum Mark</th>
                 <th>Mean Mark</th>

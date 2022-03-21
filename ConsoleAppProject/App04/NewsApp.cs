@@ -26,6 +26,7 @@ namespace ConsoleAppProject.App04
         {
             NewsFeed = new NewsFeed();       
         }
+
         public void Run()
         {
             AddMessagePost();
@@ -42,7 +43,7 @@ namespace ConsoleAppProject.App04
             string message = Console.ReadLine();
 
             MessagePost post = new MessagePost(message, author);
-            NewsFeed.Posts.Add(post);
+            //NewsFeed.Posts.Add(post);
         }
     }
 }

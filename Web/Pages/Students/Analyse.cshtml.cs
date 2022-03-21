@@ -16,7 +16,6 @@ namespace Web.Pages.Students
         private readonly WebContext _context;
 
         public IList<Student> Students { get; set; }
-
         public StudentGrades App03 { get; set; }
 
         public AnalyseModel(WebContext context)
