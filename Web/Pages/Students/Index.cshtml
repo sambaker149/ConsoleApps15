@@ -1,5 +1,5 @@
 ﻿@page
-@model Web.Pages.Students.IndexModel
+@model IndexModel;
 @using ConsoleAppProject.App03;
 
 @{
@@ -27,22 +27,23 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Student[0].Id)
+                @Html.DisplayNameFor(model => model.Student.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Student[0].Name)
+                @Html.DisplayNameFor(model => model.Student.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Student[0].Marks)
+                @Html.DisplayNameFor(model => model.Student.Marks)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Student[0].Grades)
+                @Html.DisplayNameFor(model => model.Student.Grades)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Student) {
+@foreach (var item in Model.Students) 
+{
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)

@@ -15,35 +15,32 @@ namespace Web.Pages.Students
     {
         private readonly WebContext _context;
 
+        public IList<Student> Students { get; set; }
+
+        public StudentGrades App03 { get; set; }
+
         public AnalyseModel(WebContext context)
         {
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task Index()
         {
-            return (IActionResult)await _context.Student.ToListAsync();
+            Students = await _context.Student.ToListAsync();
+            int i = 0;
+            foreach (Student student in Students)
+            {
+                App03.Students[i] = Students[i].Name;
+                App03.Marks[i] = Students[i].Marks;
+                i++;
+            }
+            App03.CalculateStatistics();
+            App03.CalculateGradeProfile();
+            return;
         }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            var students = await _context.Student.ToListAsync();
-            StudentGrades grades = new StudentGrades();
-
-            grades.Students = new string[students.Count];
-            grades.Marks = new int[students.Count];
-
-            int i = 0;
-
-            foreach (Student student in students)
-            {
-                grades.Students[i] = student.Name;
-                grades.Marks[i] = student.Marks;
-                i++;
-            }
-            grades.CalculateStatistics();
-            grades.CalculateGradeProfile();
-
             return Page();
         }
     }

@@ -1,11 +1,12 @@
 ﻿@page
-@model ConsoleAppProject.App03.StudentGrades;
+@model AnalyseModel;
+@using ConsoleAppProject.App03;
 
 @{
     ViewData["Title"] = "Grade Analysis";
 }
 
-<head>
+@*<head>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">// Load google charts
         google.charts.load('current', { 'packages': ['corechart'] });
@@ -27,7 +28,7 @@
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
             chart.draw(data, options);
         }</script>
-</head>
+</head>*@
 <section>
 <h2>Stastics</h2>
     <table class="table table-bordered table-hover">
@@ -41,10 +42,10 @@
         </thead>
         <tbody>
             <tr class="text-center">
-                <td>@Model.Students.Length</td>
-                <td>@Model.Mean</td>
-                <td>@Model.Minimum</td>
-                <td>@Model.Maximum</td>
+                <td>@Model.App03.Students.Length</td>
+                <td>@Model.App03.Mean</td>
+                <td>@Model.App03.Minimum</td>
+                <td>@Model.App03.Maximum</td>
             </tr>
         </tbody>
     </table>
@@ -63,9 +64,9 @@
         </thead>
         <tbody>
             <tr class="text-center">
-                @foreach(int count in Model.GradeProfile)
+                @foreach(int count in Model.App03.GradeProfile)
                 {
-                    double percent = (double)count / Model.Marks.Length;
+                    double percent = (double)count / Model.App03.Marks.Length;
                     <td>@percent.ToString("0.0")</td>
                 }
             </tr>
