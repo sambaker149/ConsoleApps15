@@ -7,71 +7,6 @@
 }
 
 <html>
-  @*<head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-            @{
-                int F = 0;
-                int D = 0;
-                int C = 0;
-                int B = 0;
-                int A = 0;
-                int marks = 0;
-
-                foreach(var item in Model)
-                {
-                    if(item.Mark <= 40)
-                    {
-                        F++;
-                    }
-                    else if(item.Mark >= 40)
-                    {
-                        D++;
-                    }
-                    else if(item.Mark >= 50)
-                    {
-                        C++;
-                    }
-                    else if(item.Mark >= 60)
-                    {
-                        B++;
-                    }
-                    else if(item.Mark >= 70)
-                    {
-                        A += 1;
-                    }
-
-                    marks += item.Mark;
-                }
-
-                marks = marks / Model.Count();
-            }
-            }
-      function drawChart() 
-      {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Grades', 'Number of Students'],
-          ['F', @F],
-          ['D', @D],
-          ['C', @C],
-          ['B', @B],
-          ['A', @A]
-        ]);
-
-        var options = 
-        {
-            title: 'Grade Profile based on @Model.Count() students. Average mark: @marks'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
-</head>*@
 <header class="jumbotron">
     <h1>Student Marks</h1>
     <h2>By Samuel Baker</h2>
@@ -130,7 +65,4 @@
 }
     </tbody>
 </table>
-</section>
-<section>
-    <div id="piechart" style="height:900px; height:500px";"></div>
 </section>

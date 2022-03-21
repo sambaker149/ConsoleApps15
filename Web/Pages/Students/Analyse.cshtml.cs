@@ -35,7 +35,7 @@ namespace Web.Pages.Students
 
             int i = 0;
 
-            foreach(Student student in students)
+            foreach (Student student in students)
             {
                 grades.Students[i] = student.Name;
                 grades.Marks[i] = student.Marks;
