@@ -55,7 +55,7 @@ namespace ConsoleAppProject.App04
         /// (Currently: Print to the text terminal. This is simulating display 
         /// in a web browser for now.)
         ///</summary>
-        public void Display()
+        public virtual void Display()
         {
             Console.WriteLine();
             Console.WriteLine($"    Author: {Username}");
@@ -79,6 +79,7 @@ namespace ConsoleAppProject.App04
             {
                 Console.WriteLine($"    {comments.Count}  comment(s). Click here to view.");
             }
+            Console.WriteLine();
         }
 
         ///<summary>

@@ -1,6 +1,7 @@
 ﻿using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
+using ConsoleAppProject.App04;
 using ConsoleAppProject.Helpers;
 using System;
 
@@ -12,18 +13,10 @@ namespace ConsoleAppProject
     /// to start App01 to App05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Samuel Baker 14/03/2022
+    /// Samuel Baker 21/03/2022
     /// </summary>
     public class Program
     {
-        public StudentGrades StudentGrades
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -39,6 +32,7 @@ namespace ConsoleAppProject
                 " Distance Converter",
                 " BMI Calculator",
                 " Student Grades",
+                " Social Network",
                 " Quit"
             };
         
@@ -61,12 +55,16 @@ namespace ConsoleAppProject
                     StudentGrades app03 = new StudentGrades();
                     app03.Run();
                     break;
+                case 4:
+                    SocialNetwork app04 = new SocialNetwork();
+                    app04.Run();
+                    break;
 
                 default:
                     break;
                 
             }
-            while (choice != 4);
+            while (choice != 5);
         }
     }
 }

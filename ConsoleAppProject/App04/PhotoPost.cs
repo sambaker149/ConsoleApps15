@@ -21,12 +21,6 @@ namespace ConsoleAppProject.App04
         
         // a one line image caption
         public String Caption { get; set; }   
-        
-        public DateTime Timestamp { get; }
-
-        private int likes;
-        
-        private readonly  List<String> comments;
 
         ///<summary>
         /// Constructor for objects of class PhotoPost.
@@ -35,6 +29,13 @@ namespace ConsoleAppProject.App04
         {
             this.Filename = filename;
             this.Caption = caption;
+        }
+
+        public override void Display()
+        {
+            Console.WriteLine($"    Photo:{Filename}");
+            Console.WriteLine($"    Caption:{Caption}");
+            base.Display();
         }
     }
 }
