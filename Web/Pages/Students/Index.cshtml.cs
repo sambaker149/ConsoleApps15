@@ -1,44 +1,36 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ConsoleAppProject.App03;
-using Web.Data;
 
 namespace Web.Pages.Students
 {
     public class IndexModel : PageModel
     {
-        private readonly WebContext _context;
+        private readonly Web.Data.WebContext _context;
 
-        public Student Student { get; set; }
-        public IList<Student> Students { get; set; }
-        public StudentGrades App03 { get; set; }
-
-        public IndexModel(WebContext context)
+        public IndexModel(Web.Data.WebContext context)
         {
             _context = context;
         }
 
+        public IList<Student> Student { get; set; }
+        public static int[] Marks { get; set; }
+        public static Grades[] GradeProfile { get; set; }
+
         public async Task OnGetAsync()
         {
-            Students = await _context.Student.ToListAsync();
-            for (int i = 0; i < Students.Count(); i++)
-            {
-                Grades grade = Students[i].Grades;
-                App03.Marks[i] = Students[i].Marks;
-                App03.GradeProfile[(int)grade - 1] = App03.GradeProfile[(int)grade - 1] + 1;
-            }
-            return;
-        }
+            Student = await _context.Student.ToListAsync();
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            return Page();
+            Marks = new int[Student.Count()];
+            GradeProfile = new Grades[5];
+
+            for (int i = 0; i < Student.Count(); i++)
+            {
+                Grades grade = Student[i].Grades;
+                Marks[i] = Student[i].Marks;
+                GradeProfile[(int)grade - 1] = GradeProfile[(int)grade - 1] + 1;
+            }
         }
     }
 }

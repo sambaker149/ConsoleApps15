@@ -1,46 +1,35 @@
 #nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using ConsoleAppProject.App03;
-using Web.Data;
 
 namespace Web.Pages.Students
 {
     public class AnalyseModel : PageModel
     {
-        private readonly WebContext _context;
+        [BindProperty]
+        public int Sum { get; set; }
+        public double Mean { get; set; }
+        public int Minimum { get; set; }
+        public int Maximum { get; set; }
+        public int F { get; set; }
+        public int D { get; set; }
+        public int C { get; set; }
+        public int B { get; set; }
+        public int A { get; set; }
 
-        public IList<Student> Students { get; set; }
-        public StudentGrades App03 { get; set; }
-
-        public AnalyseModel(WebContext context)
+        public void OnGet()
         {
-            _context = context;
+            Sum = IndexModel.Marks.Length;
+            Mean = (double)IndexModel.Marks.Sum() / (double)Sum;
+            Minimum = IndexModel.Marks.Min();
+            Maximum = IndexModel.Marks.Max();
+
+            F = (int)IndexModel.GradeProfile[0];
+            D = (int)IndexModel.GradeProfile[1];
+            C = (int)IndexModel.GradeProfile[2];
+            B = (int)IndexModel.GradeProfile[3];
+            A = (int)IndexModel.GradeProfile[4];
         }
 
-        public async Task Index()
-        {
-            Students = await _context.Student.ToListAsync();
-            int i = 0;
-            foreach (Student student in Students)
-            {
-                App03.Students[i] = Students[i].Name;
-                App03.Marks[i] = Students[i].Marks;
-                i++;
-            }
-            App03.CalculateStatistics();
-            App03.CalculateGradeProfile();
-            return;
-        }
-
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            return Page();
-        }
     }
 }

@@ -1,36 +1,12 @@
 ﻿@page
-@model AnalyseModel;
-@using ConsoleAppProject.App03;
+@model AnalyseModel
 
 @{
     ViewData["Title"] = "Grade Analysis";
 }
 
-<head>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">// Load google charts
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
-        // Draw the chart and set the chart values
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Grade', 'Number of Students'],
-                ['Grade A', @Model.App03.GradeProfile[0]],
-                ['Grade B', @Model.App03.GradeProfile[1]],
-                ['Grade C', @Model.App03.GradeProfile[2]],
-                ['Grade D', @Model.App03.GradeProfile[3]],
-                ['Grade F', @Model.App03.GradeProfile[4]]
-            ]);
-            // Optional; add a title and set the width and height of the chart
-            var options = {
-                'backgroundColor': 'transparent', 'width': 600, 'height': 425, };
-            // Display the chart inside the <div> element with id="piechart"
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-            chart.draw(data, options);
-        }</script>
-</head>
 <section>
-<h2>Stastics</h2>
+<h2>Grade Statistics</h2>
     <table class="table table-bordered table-hover">
         <thead>
             <tr class="text-center table-success">
@@ -42,10 +18,10 @@
         </thead>
         <tbody>
             <tr class="text-center">
-                <td>@Model.App03.Students.Length</td>
-                <td>@Model.App03.Mean</td>
-                <td>@Model.App03.Minimum</td>
-                <td>@Model.App03.Maximum</td>
+                <td>@Model.Sum</td>
+                <td>@Model.Minimum</td>
+                <td>@Model.Maximum</td>
+                <td>@Model.Mean.ToString("0.0")</td>
             </tr>
         </tbody>
     </table>
@@ -62,13 +38,13 @@
                 <th>F</th>
             </tr>
         </thead>
-        <tbody>
+       <tbody>
             <tr class="text-center">
-                @foreach(int count in Model.App03.GradeProfile)
-                {
-                    double percent = (double)count / Model.App03.Marks.Length;
-                    <td>@percent.ToString("0.0")</td>
-                }
+                <td>@Model.A</td>
+                <td>@Model.B</td>
+                <td>@Model.C</td>
+                <td>@Model.D</td>
+                <td>@Model.F</td>
             </tr>
         </tbody>
     </table>
@@ -82,4 +58,23 @@
                 </div>
             </div>
         </div>
+</section>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Grade X', 'Number of Students'],
+                ['Grade A', @Model.A],
+                ['Grade B', @Model.B],
+                ['Grade C', @Model.C],
+                ['Grade D', @Model.D],
+                ['Grade F', @Model.F]
+            ]);
+            var options = {
+                'backgroundColor': 'transparent', 'width': 600, 'height': 425, };
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }</script>
 </section>
