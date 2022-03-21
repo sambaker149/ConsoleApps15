@@ -6,7 +6,7 @@ namespace ConsoleApp.Tests
     [TestClass]
     public class TestStudentGrades
     {
-        private StudentGrades
+        private readonly StudentGrades
             studentGrades = new StudentGrades();
 
         private readonly int[] testMarks = new int[]
@@ -106,8 +106,7 @@ namespace ConsoleApp.Tests
         [TestMethod]
         public void TestCalculateMinimum()
         {
-            studentGrades = new StudentGrades();
-            //studentGrades.Marks = testMarks;
+            studentGrades.Marks = testMarks;
             int expectedMinimum = 10;
             studentGrades.CalculateStatistics();
             Assert.AreEqual(expectedMinimum, studentGrades.Minimum);
@@ -116,8 +115,7 @@ namespace ConsoleApp.Tests
         [TestMethod]
         public void TestCalculateMaximum()
         {
-            studentGrades = new StudentGrades();
-            //studentGrades.Marks = testMarks;
+            studentGrades.Marks = testMarks;
             int expectedMaximum = 100;
             studentGrades.CalculateStatistics();
             Assert.AreEqual(expectedMaximum, studentGrades.Maximum);
@@ -126,8 +124,7 @@ namespace ConsoleApp.Tests
         [TestMethod]
         public void TestCalculateMean()
         {
-            studentGrades = new StudentGrades();
-            //studentGrades.Marks = testMarks;
+            studentGrades.Marks = testMarks;
             double expectedMean = 55.0;
             studentGrades.CalculateStatistics();
             Assert.AreEqual(expectedMean, studentGrades.Mean);
@@ -136,8 +133,7 @@ namespace ConsoleApp.Tests
         [TestMethod]
         public void TestGradeProfile()
         {
-            studentGrades = new StudentGrades();
-            //studentGrades = testMarks;
+            studentGrades.Marks = testMarks;
             studentGrades.CalculateGradeProfile();
             bool expectedProfile = ((studentGrades.GradeProfile[0] == 3) &&
                                     (studentGrades.GradeProfile[1] == 1) &&

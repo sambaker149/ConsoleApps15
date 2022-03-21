@@ -24,11 +24,17 @@ namespace ConsoleAppProject.App03
         public const int lowestA = 70;
         public const int maxMark = 100;
 
-        public Student [] Students { get; set; }
+        public const int MIN = 0;
+        public const int MAX = 100;
+        public const int Percentage = 100;
+
+        public string[] Students { get; set; }
+        public int[] Marks { get; set; }
         public int[] GradeProfile { get; set; }
         public double Mean { get; set; }
         public int Minimum { get; set; }
         public int Maximum { get; set; }
+        public int[] Mark { get; set; }
 
         /// <summary>
         /// Constructor called upon creation of an object
@@ -36,21 +42,18 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void Run()
         {
-            Students = new Student[]
+            Students = new string[]
             {
-                new Student { Name = "Sam", Marks = 10 },
-                new Student { Name = "Nicola", Marks = 20 },
-                new Student { Name = "Robert", Marks = 30 },
-                new Student { Name = "Esther", Marks = 40 },
-                new Student { Name = "Kai", Marks = 50 },
-                new Student { Name = "Kelsey", Marks = 60 },
-                new Student { Name = "Ethan", Marks = 70 },
-                new Student { Name = "Amy", Marks = 80 },
-                new Student { Name = "Lewis", Marks = 90 },
-                new Student { Name = "Catherine", Marks = 100 }
+                "Sam", "Nicola", "Robert", "Esther", "Kai",
+                "Kelsey", "Ethan", "Amy", "Lewis", "Catherine"
             };
-
+             
             GradeProfile = new int[(int)Grades.A];
+            Marks = new int[]
+            {
+                10, 20, 30, 40, 50,
+                60, 70, 80, 90, 100
+            };
 
             OutputMenuChoices();
         }
@@ -121,12 +124,12 @@ namespace ConsoleAppProject.App03
             Console.WriteLine(" ------------------------------------");
 
             int i = 0;
-            foreach (Student student in Students)
+            foreach (var student in Students)
             {
                 int mark = (int)ConsoleHelper.InputNumber(
-                    $" Enter {student.Name}'s Mark > ", 0, 100);
+                    $" Enter {student}'s Mark > ", MIN, MAX);
 
-                student.Marks = mark;
+                Marks[i] = mark;
                 i++;
             };
 
@@ -162,12 +165,11 @@ namespace ConsoleAppProject.App03
             Console.WriteLine(" Results for each Student");
             Console.WriteLine(" ------------------------");
 
-            foreach (Student student in Students)
+            for (int i = 0; i < 10; i++)
             {
-                int mark = student.Marks;
-                Grades grade = ConvertToGrade(student.Marks);
-                student.Grades = grade;
-                Console.WriteLine($" {student.Name}'s Mark = {student.Marks}, Grade = {grade}");
+                int mark = Marks[i];
+                Grades grade = ConvertToGrade(mark);
+                Console.WriteLine($" {Students[i]}'s Mark = {mark}, Grade = {grade}");
             }
 
             Console.WriteLine();
@@ -179,17 +181,17 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void CalculateStatistics()
         {
-            Minimum = Minimum;
-            Maximum = Maximum;
+            Minimum = Marks[0];
+            Maximum = Marks[0];
 
             double total = 0;
 
-            foreach (Student student in Students)
+            foreach (int mark in Marks)
             {
-                if (student.Marks > Maximum) Maximum = student.Marks;
-                if (student.Marks < Minimum) Minimum = student.Marks;
+                if (mark > Maximum) Maximum = mark;
+                if (mark < Minimum) Minimum = mark;
 
-                total += student.Marks;
+                total += mark;
             }
 
             Mean = total / Students.Length;
@@ -223,9 +225,9 @@ namespace ConsoleAppProject.App03
                 GradeProfile[i] = 0;
             }
 
-            foreach (Student student in Students)
+            foreach (int mark in Marks)
             {
-                Grades grade = ConvertToGrade(student.Marks);
+                Grades grade = ConvertToGrade(mark);
                 GradeProfile[(int)grade-1]++;
             }
 
@@ -245,7 +247,7 @@ namespace ConsoleAppProject.App03
             Grades grade = Grades.F;
             foreach (int count in GradeProfile)
             {
-                int percentage = count * 100 / Students.Length;
+                int percentage = count * Percentage / Marks.Length;
                 Console.WriteLine($" Grade {grade}: Count {count} ({percentage}%)");
                 grade++;
             }

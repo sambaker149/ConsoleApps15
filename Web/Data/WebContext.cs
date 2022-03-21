@@ -15,6 +15,6 @@ namespace Web.Data
         {
         }
 
-        public DbSet<ConsoleAppProject.App03.Student> Student { get; set; }
+        public DbSet<Student> Student { get; set; }
     }
 }

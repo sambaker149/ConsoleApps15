@@ -1,17 +1,17 @@
 ﻿@page
 @model Web.Pages.Students.IndexModel
+@using ConsoleAppProject.App03;
 
 @{
     ViewData["Title"] = "Student Marks";
 }
-<head>
-    <html>
-  <head>
+
+<html>
+  @*<head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
-        Model.Count()
             @{
                 int F = 0;
                 int D = 0;
@@ -71,7 +71,7 @@
         chart.draw(data, options);
       }
     </script>
-</head>
+</head>*@
 <header class="jumbotron">
     <h1>Student Marks</h1>
     <h2>By Samuel Baker</h2>
@@ -85,7 +85,8 @@
 </header>
 <section>
 <p>
-    <a class="btn btn-success" asp-page="Create">Add Student</a>
+    <a class="btn btn-success" asp-page="Create">Add Student</a> |
+    <a class="btn btn-warning" asp-page="Analyse">Analyse Student Marks</a>
 </p>
 <table class="table">
     <thead>

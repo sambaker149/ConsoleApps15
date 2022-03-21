@@ -1,0 +1,84 @@
+﻿@page
+@model ConsoleAppProject.App03.StudentGrades;
+
+@{
+    ViewData["Title"] = "Grade Analysis";
+}
+
+<head>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">// Load google charts
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        // Draw the chart and set the chart values
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Grade', 'Number of Students'],
+                ['Grade A', @Model.],
+                ['Grade B', @Model.B],
+                ['Grade C', @Model.C],
+                ['Grade D', @Model.D],
+                ['Grade F', @Model.F]
+            ]);
+            // Optional; add a title and set the width and height of the chart
+            var options = {
+                'backgroundColor': 'transparent', 'width': 600, 'height': 425, };
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }</script>
+</head>
+<section>
+<h2>Stastics</h2>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="text-center table-success">
+                <th>Number of Students</th> 
+                <th>Minimum Mark</th>
+                <th>Maximum Mark</th>
+                <th>Mean Mark</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center">
+                <td>@Model.Students.Length</td>
+                <td>@Model.Mean</td>
+                <td>@Model.Minimum</td>
+                <td>@Model.Maximum</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<section>
+<h2>Grade Profile</h2>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="text-center table-success">
+                <th>A</th> 
+                <th>B</th>
+                <th>C</th>
+                <th>D</th>
+                <th>F</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center">
+                @foreach(int count in Model.GradeProfile)
+                {
+                    double percent = (double)count / Model.Marks.Length;
+                    <td>@percent.ToString("0.0")</td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</section>
+<section>
+    <div class="row align-self-center">
+        <div class="card mb-3 text-center" style="margin: 0 auto; display: block;">
+            <div class="card-header text-white bg-dark">Grade Profile</div>
+                <div class="card-body text-warning">
+                    <div id="piechart"></div>
+                </div>
+            </div>
+        </div>
+</section>

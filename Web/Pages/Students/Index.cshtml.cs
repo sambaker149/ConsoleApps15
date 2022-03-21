@@ -13,9 +13,9 @@ namespace Web.Pages.Students
 {
     public class IndexModel : PageModel
     {
-        private readonly Web.Data.WebContext _context;
+        private readonly WebContext _context;
 
-        public IndexModel(Web.Data.WebContext context)
+        public IndexModel(WebContext context)
         {
             _context = context;
         }
