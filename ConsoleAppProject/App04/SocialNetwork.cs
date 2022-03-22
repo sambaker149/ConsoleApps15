@@ -27,7 +27,12 @@ namespace ConsoleAppProject.App04
             {
                 " Post Message",
                 " Post Photo",
-                " Display Posts",
+                " Remove Post",
+                " Display All Posts",
+                " Display Posts by Author",
+                " Display Posts by Date",
+                " Add Comment to Post",
+                " Like or Unlike a Post",
                 " Quit"
             };
 
@@ -50,9 +55,12 @@ namespace ConsoleAppProject.App04
                         PostPhoto();
                         break;
                     case 3:
-                        DisplayPosts();
+                        RemovePost();
                         break;
                     case 4:
+                        DisplayPosts();
+                        break;
+                    case 9:
                         wantToQuit = true;
                         break;
                 }
@@ -71,6 +79,10 @@ namespace ConsoleAppProject.App04
 
             MessagePost post = new MessagePost(message, author);
             feed.AddMessagePost(post);
+
+            Console.WriteLine(" You have successfully posted your Message");
+            Console.WriteLine(" Your Message:");
+            post.Display();
         }
 
         public void PostPhoto()
@@ -88,6 +100,20 @@ namespace ConsoleAppProject.App04
 
             PhotoPost post = new PhotoPost(caption, photo, author);
             feed.AddPhotoPost(post);
+
+            Console.WriteLine(" You have successfully posted your Photo");
+            Console.WriteLine(" Your Photo:");
+            post.Display();
+        }
+
+        private void RemovePost()
+        {
+            Console.WriteLine(" Removing a Post");
+
+            int id = (int)ConsoleHelper.InputNumber("Please Enter the Post ID > ");
+
+
+            feed.RemovePost(id);
         }
 
         private void DisplayPosts()

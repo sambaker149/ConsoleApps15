@@ -16,20 +16,20 @@ namespace Web.Pages.Students
 
         public IList<Student> Student { get; set; }
         public static int[] Marks { get; set; }
-        public static Grades[] GradeProfile { get; set; }
+        public static int[] GradeProfile { get; set; }
 
         public async Task OnGetAsync()
         {
             Student = await _context.Student.ToListAsync();
 
             Marks = new int[Student.Count()];
-            GradeProfile = new Grades[5];
+            GradeProfile = new int[5];
 
             for (int i = 0; i < Student.Count(); i++)
             {
-                Grades grade = Student[i].Grades;
-                Marks[i] = Student[i].Marks;
-                GradeProfile[(int)grade - 1] = GradeProfile[(int)grade - 1] + 1;
+                int grade = Student[i].Grade;
+                Marks[i] = Student[i].Mark;
+                GradeProfile[(int)grade] = GradeProfile[(int)grade] + 1;
             }
         }
     }

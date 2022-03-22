@@ -24,12 +24,11 @@ namespace Web.Pages.Students
             Minimum = IndexModel.Marks.Min();
             Maximum = IndexModel.Marks.Max();
 
-            F = (int)IndexModel.GradeProfile[0];
-            D = (int)IndexModel.GradeProfile[1];
+            A = (int)IndexModel.GradeProfile[0];
+            B = (int)IndexModel.GradeProfile[1];
             C = (int)IndexModel.GradeProfile[2];
-            B = (int)IndexModel.GradeProfile[3];
-            A = (int)IndexModel.GradeProfile[4];
+            D = (int)IndexModel.GradeProfile[3];
+            F = (int)IndexModel.GradeProfile[4];
         }
-
     }
 }

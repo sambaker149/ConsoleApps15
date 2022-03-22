@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleAppProject.Helpers;
+using System;
 using System.Collections.Generic;
 
 namespace ConsoleAppProject.App04
@@ -14,8 +15,7 @@ namespace ConsoleAppProject.App04
     /// search or ordering functions.
     ///</summary>
     ///<author>
-    ///  Michael Kölling and David J. Barnes
-    ///  version 0.1
+    ///  Samuel Baker 22/03/2022
     ///</author> 
     public class NewsFeed
     {
@@ -37,7 +37,6 @@ namespace ConsoleAppProject.App04
             AddPhotoPost(photoPost);
         }
 
-
         ///<summary>
         /// Add a text post to the news feed.
         /// 
@@ -58,19 +57,57 @@ namespace ConsoleAppProject.App04
             posts.Add(photo);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Post FindPost(int id)
+        {
+            foreach (Post post in posts)
+            {
+                if (post.postID == id)
+                {
+                    return post;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void RemovePost(int id)
+        {
+            Post post = FindPost(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($" Post with ID {id} does not exist");
+            }
+            else
+            {
+                Console.WriteLine($" The Post with ID {id} has been removed");
+
+                posts.Remove(post);
+                post.Display();
+            }
+        }
+
         ///<summary>
         /// Show the news feed. Currently: print the news feed details to the
         /// terminal. (To do: replace this later with display in web browser.)
         ///</summary>
         public void Display()
         {
-            // display all text posts
+            ConsoleHelper.OutputTitle(" Displaying All Posts");
+
             foreach (Post post in posts)
             {
                 post.Display();
-                Console.WriteLine();   // empty line between posts
+                Console.WriteLine();
             }
         }
+
     }
 
 }

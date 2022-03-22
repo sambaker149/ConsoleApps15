@@ -5,16 +5,22 @@ namespace ConsoleAppProject.App04
 {
     public class Post
     {
-        public string Username { get; set; }
-        public DateTime Timestamp { get; set; }
+        public int postID { get; }
+        public string Username { get; }
+        public DateTime Timestamp { get; }
+        private static int instances = 0;
         
         private int likes;
         private readonly List<String> comments;
 
         public Post(string author)
         {
+            instances++;
+            postID = instances;
+
             this.Username = author;
             Timestamp = DateTime.Now;
+
             likes = 0;
             comments = new List<String>();
         }
