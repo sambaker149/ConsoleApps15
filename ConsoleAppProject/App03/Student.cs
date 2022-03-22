@@ -21,27 +21,27 @@ namespace ConsoleAppProject.App03
         [Range(0, 100)]
         public int Mark { get; set; }
 
-        public int Grade { get; set; }
+        public Grades Grade 
+        { 
+            get
+            {
+                if (Mark >= 0 && Mark < (int)Grades.D)
+                    return Grades.F;
 
-        /// <summary>
-        /// Converts the mark for each student, as inputted by the user,
-        /// into a grade
-        /// </summary>
-        public void ConvertToGrade()
-        {
-            if (Mark >= StudentGrades.lowestF && Mark <= StudentGrades.lowestD - 1)
-                Grade = (int)Grades.F;
-            if (Mark >= StudentGrades.lowestD && Mark <= StudentGrades.lowestC - 1)
-                Grade = (int)Grades.D;
-            if (Mark >= StudentGrades.lowestC && Mark <= StudentGrades.lowestB - 1)
-                Grade = (int)Grades.C;
-            if (Mark >= StudentGrades.lowestB && Mark <= StudentGrades.lowestA - 1)
-                Grade = (int)Grades.B;
-            if (Mark >= StudentGrades.lowestA && Mark <= StudentGrades.maxMark)
-                Grade = (int)Grades.A;
+                if (Mark >= (int)Grades.D && Mark < (int)Grades.C)
+                    return Grades.D;
 
-            else Grade = (int)Grades.X;
+                if (Mark >= (int)Grades.C && Mark < (int)Grades.B)
+                    return Grades.C;
+
+                if (Mark >= (int)Grades.B && Mark < (int)Grades.A)
+                    return Grades.B;
+
+                if (Mark >= (int)Grades.A && Mark <= 100)
+                    return Grades.A;
+
+                else return Grades.X;
+            }
         }
-
     }
 }

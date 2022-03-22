@@ -27,10 +27,28 @@ namespace Web.Pages.Students
 
             for (int i = 0; i < Student.Count(); i++)
             {
-                int grade = Student[i].Grade;
+                Grades grade = Student[i].Grade;
                 Marks[i] = Student[i].Mark;
-                GradeProfile[(int)grade] = GradeProfile[(int)grade] + 1;
+
+                switch (grade)
+                {
+                    case Grades.X:
+                        break;
+                    case Grades.F:
+                        GradeProfile[0]++;  break;
+                    case Grades.D:
+                        GradeProfile[1]++; break;
+                    case Grades.C:
+                        GradeProfile[2]++; break;
+                    case Grades.B:
+                        GradeProfile[3]++; break;
+                    case Grades.A:
+                        GradeProfile[4]++; break;
+                    default:
+                        break;
+                }
             }
+            int x = 0;
         }
     }
 }
