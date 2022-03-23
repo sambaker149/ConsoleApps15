@@ -29,7 +29,7 @@ namespace Web.Pages.Students
             {
                 Grades grade = Student[i].Grade;
                 Marks[i] = Student[i].Mark;
-
+                grade.
                 switch (grade)
                 {
                     case Grades.X:

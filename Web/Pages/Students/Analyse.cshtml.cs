@@ -19,8 +19,7 @@ namespace Web.Pages.Students
 
         public void OnGet()
         {
-            Sum = IndexModel.Marks.Length;
-            Mean = (double)IndexModel.Marks.Sum() / (double)Sum;
+            Mean = IndexModel.Marks.Average();
             Minimum = IndexModel.Marks.Min();
             Maximum = IndexModel.Marks.Max();
 
