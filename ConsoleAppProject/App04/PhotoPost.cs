@@ -2,24 +2,17 @@
 
 namespace ConsoleAppProject.App04
 {
-    ///<summary>
+    /// <summary>
     /// This class stores information about a post in a social network. 
-    /// The main part of the post consists of a photo and a caption. 
-    /// Other data, such as author and time, are also stored.
-    ///</summary>
+    /// The main part of the post consists of a photo and a caption
+    /// </summary>
     /// <author>
-    /// Michael Kölling and David J. Barnes
-    /// @version 0.1
+    /// Samuel Baker 27/03/2022
     /// </author>
     public class PhotoPost : Post
     {
-        // username of the post's author
-        public String Username { get; set; }
-
-        // the name of the image file
         public String Filename { get; set; }
         
-        // a one line image caption
         public String Caption { get; set; }   
 
         ///<summary>
@@ -33,8 +26,8 @@ namespace ConsoleAppProject.App04
 
         public override void Display()
         {
-            Console.WriteLine($"    Photo:{Filename}");
-            Console.WriteLine($"    Caption:{Caption}");
+            Console.WriteLine($" Photo: {Filename}");
+            Console.WriteLine($" Caption: {Caption}");
             base.Display();
         }
     }

@@ -2,18 +2,16 @@
 
 namespace ConsoleAppProject.App04
 {
-    ///<summary>
+    /// <summary>
     /// This class stores information about a post in a social network. 
     /// The main part of the post consists of a (possibly multi-line)
-    /// text message. Other data, such as author and time, are also stored.
+    /// text message
     /// </summary>
     /// <author>
-    /// Michael Kölling and David J. Barnes
-    /// version 0.1
+    /// Samuel Baker 27/03/2022
     /// </author>
     public class MessagePost : Post
     {
-        // an arbitrarily long, multi-line message
         public String Message { get; }
 
         /// <summary>
@@ -26,7 +24,7 @@ namespace ConsoleAppProject.App04
 
         public override void Display()
         {
-            Console.WriteLine($"    Message:{Message}");
+            Console.WriteLine($" Message:{Message}");
             base.Display();
         }
     }

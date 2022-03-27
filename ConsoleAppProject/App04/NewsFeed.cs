@@ -4,25 +4,19 @@ using System.Collections.Generic;
 
 namespace ConsoleAppProject.App04
 {
-    ///<summary>
-    /// The NewsFeed class stores news posts for the news feed in a social network 
-    /// application.
-    /// 
-    /// Display of the posts is currently simulated by printing the details to the
-    /// terminal. (Later, this should display in a browser.)
-    /// 
-    /// This version does not save the data to disk, and it does not provide any
-    /// search or ordering functions.
-    ///</summary>
-    ///<author>
-    ///  Samuel Baker 22/03/2022
-    ///</author> 
+    /// <summary>
+    /// The NewsFeed class stores news posts for the news feed 
+    /// in a social network application
+    /// </summary>
+    /// <author>
+    ///  Samuel Baker 27/03/2022
+    /// </author> 
     public class NewsFeed
     {
         private readonly List<Post> posts;
 
         ///<summary>
-        /// Construct an empty news feed.
+        /// Construct a news feed containing sample posts
         ///</summary>
         public NewsFeed()
         {
@@ -38,9 +32,7 @@ namespace ConsoleAppProject.App04
         }
 
         ///<summary>
-        /// Add a text post to the news feed.
-        /// 
-        /// @param text  The text post to be added.
+        /// Add a text post to the news feed
         ///</summary>
         public void AddMessagePost(MessagePost message)
         {
@@ -48,9 +40,7 @@ namespace ConsoleAppProject.App04
         }
 
         ///<summary>
-        /// Add a photo post to the news feed.
-        /// 
-        /// @param photo  The photo post to be added.
+        /// Add a photo post to the news feed
         ///</summary>
         public void AddPhotoPost(PhotoPost photo)
         {
@@ -58,9 +48,10 @@ namespace ConsoleAppProject.App04
         }
 
         /// <summary>
-        /// 
+        /// Find a post according to the ID assigned to each 
+        /// post
         /// </summary>
-        public Post FindPost(int id)
+        public Post FindPostByID(int id)
         {
             foreach (Post post in posts)
             {
@@ -74,11 +65,13 @@ namespace ConsoleAppProject.App04
         }
 
         /// <summary>
-        /// 
+        /// Find a post using a given ID and remove the selected post
+        /// from the News Feed
         /// </summary>
         public void RemovePost(int id)
         {
-            Post post = FindPost(id);
+            ConsoleHelper.OutputTitle(" Removing a Post");
+            Post post = FindPostByID(id);
 
             if (post == null)
             {
@@ -94,8 +87,7 @@ namespace ConsoleAppProject.App04
         }
 
         ///<summary>
-        /// Show the news feed. Currently: print the news feed details to the
-        /// terminal. (To do: replace this later with display in web browser.)
+        /// Shows the news feed details to the terminal
         ///</summary>
         public void Display()
         {

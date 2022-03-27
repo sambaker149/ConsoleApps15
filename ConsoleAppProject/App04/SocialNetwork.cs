@@ -12,6 +12,9 @@ namespace ConsoleAppProject.App04
     /// a list of posts
     /// Users can also display the posts in a variety of ways
     /// </summary>
+    /// <author>
+    ///  Samuel Baker 27/03/2022
+    /// </author> 
     public class SocialNetwork
     {
         private NewsFeed feed = new NewsFeed();
@@ -48,20 +51,32 @@ namespace ConsoleAppProject.App04
 
                 switch (choice)
                 {
-                    case 1:
-                        PostMessage();
+                    case 1: 
+                        PostMessage(); 
                         break;
-                    case 2:
-                        PostPhoto();
+                    case 2: 
+                        PostPhoto(); 
                         break;
-                    case 3:
-                        RemovePost();
+                    case 3: 
+                        RemovePost(); 
                         break;
-                    case 4:
-                        DisplayPosts();
+                    case 4: 
+                        DisplayPosts(); 
                         break;
-                    case 9:
-                        wantToQuit = true;
+                    case 5: 
+                        DisplayByAuthor(); 
+                        break;
+                    case 6: 
+                        DisplayByDate(); 
+                        break;
+                    case 7: 
+                        AddComment(); 
+                        break;
+                    case 8: 
+                        LikePost(); 
+                        break;
+                    case 9: 
+                        wantToQuit = true; 
                         break;
                 }
             } while (!wantToQuit);
@@ -69,10 +84,9 @@ namespace ConsoleAppProject.App04
 
         private void PostMessage()
         {
-            ConsoleHelper.OutputHeading(" Add Message");
+            ConsoleHelper.OutputHeading(" Add a Message");
 
-            Console.Write(" Please Enter the Author's Name > ");
-            string author = Console.ReadLine();
+            string author = InputName();
 
             Console.Write(" Please Enter the Message > ");
             string message = Console.ReadLine();
@@ -81,18 +95,17 @@ namespace ConsoleAppProject.App04
             feed.AddMessagePost(post);
 
             Console.WriteLine(" You have successfully posted your Message");
-            Console.WriteLine(" Your Message:");
+            ConsoleHelper.OutputTitle(" Your Message:");
             post.Display();
         }
 
         public void PostPhoto()
         {
-            ConsoleHelper.OutputHeading(" Add Photo");
+            ConsoleHelper.OutputHeading(" Add a Photo");
 
-            Console.Write(" Please Enter the Author's Name > ");
-            string author = Console.ReadLine();
+            string author = InputName();
 
-            Console.Write(" Please Choose the Photo > ");
+            Console.Write(" Please Enter the Image Filename > ");
             string photo = Console.ReadLine();
 
             Console.Write(" Please Add a Caption > ");
@@ -102,23 +115,61 @@ namespace ConsoleAppProject.App04
             feed.AddPhotoPost(post);
 
             Console.WriteLine(" You have successfully posted your Photo");
-            Console.WriteLine(" Your Photo:");
+            ConsoleHelper.OutputTitle(" Your Photo:");
             post.Display();
+        }
+
+        /// <summary>
+        /// Prompts the user to input the Author's name
+        /// </summary>
+        private string InputName()
+        {
+            string author = InputName();
+
+            return author;
         }
 
         private void RemovePost()
         {
-            Console.WriteLine(" Removing a Post");
-
+            ConsoleHelper.OutputTitle(" Removing a Post");
+            
             int id = (int)ConsoleHelper.InputNumber("Please Enter the Post ID > ");
-
-
             feed.RemovePost(id);
         }
 
         private void DisplayPosts()
         {
+            ConsoleHelper.OutputTitle(" All Posts");
+            
             feed.Display();
+        }
+
+        private void DisplayByAuthor()
+        {
+            ConsoleHelper.OutputTitle(" Posts By Author");
+            
+            throw new NotImplementedException();
+        }
+
+        private void DisplayByDate()
+        {
+            ConsoleHelper.OutputTitle(" Posts By Date");
+            
+            throw new NotImplementedException();
+        }
+
+        private void AddComment()
+        {
+            ConsoleHelper.OutputTitle(" Commenting on a Post");
+            
+            throw new NotImplementedException();
+        }
+
+        private void LikePost()
+        {
+            ConsoleHelper.OutputTitle(" Liking a Post");
+            
+            throw new NotImplementedException();
         }
     }
 }
