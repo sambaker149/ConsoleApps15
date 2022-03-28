@@ -71,6 +71,7 @@ namespace ConsoleAppProject.App04
         public virtual void Display()
         {
             Console.WriteLine();
+            Console.WriteLine($" Post ID: {postID}");
             Console.WriteLine($" Author: {Username}");
             Console.WriteLine($" Time Elpased: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();

@@ -64,16 +64,16 @@ namespace ConsoleAppProject.App04
                         DisplayPosts(); 
                         break;
                     case 5: 
-                        DisplayByAuthor(); 
+                        DisplayAuthorPosts(); 
                         break;
                     case 6: 
-                        DisplayByDate(); 
+                        //DisplayByDate(); 
                         break;
                     case 7: 
                         AddComment(); 
                         break;
                     case 8: 
-                        LikePost(); 
+                        RatePost(); 
                         break;
                     case 9: 
                         wantToQuit = true; 
@@ -82,6 +82,10 @@ namespace ConsoleAppProject.App04
             } while (!wantToQuit);
         }
 
+        /// <summary>
+        /// Posts a Message post with the Author name and the
+        /// message
+        /// </summary>
         private void PostMessage()
         {
             ConsoleHelper.OutputHeading(" Add a Message");
@@ -99,6 +103,10 @@ namespace ConsoleAppProject.App04
             post.Display();
         }
 
+        /// <summary>
+        /// Posts a photo post with the Author's name, the Image
+        /// filename and the caption
+        /// </summary>
         public void PostPhoto()
         {
             ConsoleHelper.OutputHeading(" Add a Photo");
@@ -124,11 +132,16 @@ namespace ConsoleAppProject.App04
         /// </summary>
         private string InputName()
         {
-            string author = InputName();
+            Console.Write(" Please Enter the Author's Name > ");
+            string author = Console.ReadLine();
 
             return author;
         }
 
+        /// <summary>
+        /// Removes the post from the News Feed based on the
+        /// Post's ID
+        /// </summary>
         private void RemovePost()
         {
             ConsoleHelper.OutputTitle(" Removing a Post");
@@ -137,6 +150,9 @@ namespace ConsoleAppProject.App04
             feed.RemovePost(id);
         }
 
+        /// <summary>
+        /// Displays all posts within the News Feed
+        /// </summary>
         private void DisplayPosts()
         {
             ConsoleHelper.OutputTitle(" All Posts");
@@ -144,32 +160,39 @@ namespace ConsoleAppProject.App04
             feed.Display();
         }
 
-        private void DisplayByAuthor()
+        /// <summary>
+        /// Allows the user to search for posts by a 
+        /// certain Author
+        /// </summary>
+        private void DisplayAuthorPosts()
         {
-            ConsoleHelper.OutputTitle(" Posts By Author");
-            
-            throw new NotImplementedException();
+            Console.WriteLine(" Please Enter the Author's Name > ");
+            string author = Console.ReadLine();
+
+            feed.DisplayByAuthor(author);
         }
 
-        private void DisplayByDate()
-        {
-            ConsoleHelper.OutputTitle(" Posts By Date");
-            
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Allows the user to add a comment to a post
+        /// </summary>
         private void AddComment()
         {
-            ConsoleHelper.OutputTitle(" Commenting on a Post");
+            int id = (int)ConsoleHelper.InputNumber(" Please Enter " +
+                "the Post ID > ");
+
+            feed.Comment(id);
             
-            throw new NotImplementedException();
         }
 
-        private void LikePost()
+        /// <summary>
+        /// Allows the user to add a Like or Unlike to a post
+        /// </summary>
+        private void RatePost()
         {
-            ConsoleHelper.OutputTitle(" Liking a Post");
-            
-            throw new NotImplementedException();
+            int id = (int)ConsoleHelper.InputNumber(" Please Enter " +
+                "the Post ID > ");
+
+            feed.LikePost(id);
         }
     }
 }

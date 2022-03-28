@@ -22,11 +22,11 @@ namespace ConsoleAppProject.App04
         {
             posts = new List<Post>();
 
-            MessagePost messagePost = new MessagePost(" Sam", 
+            MessagePost messagePost = new MessagePost(" Sam",
                 " Hello World");
             AddMessagePost(messagePost);
 
-            PhotoPost photoPost = new PhotoPost(" Sam", 
+            PhotoPost photoPost = new PhotoPost(" Sam",
                 "Image1.jpg", "Hello World");
             AddPhotoPost(photoPost);
         }
@@ -56,6 +56,40 @@ namespace ConsoleAppProject.App04
             foreach (Post post in posts)
             {
                 if (post.postID == id)
+                {
+                    return post;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Find a post according to the ID assigned to each 
+        /// post
+        /// </summary>
+        public Post FindPostByAuthor(string author)
+        {
+            foreach (Post post in posts)
+            {
+                if (post.Username == author)
+                {
+                    return post;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Find a post according to the ID assigned to each 
+        /// post
+        /// </summary>
+        public Post FindPostByDate(DateTime date)
+        {
+            foreach (Post post in posts)
+            {
+                if (post.Timestamp == date)
                 {
                     return post;
                 }
@@ -100,6 +134,99 @@ namespace ConsoleAppProject.App04
             }
         }
 
-    }
+        ///<summary>
+        /// Shows the news feed details to the terminal
+        ///</summary>
+        public void DisplayByAuthor(string author)
+        {
+            ConsoleHelper.OutputTitle(" Displaying Posts by Author");
 
+            foreach (Post post in posts)
+            {
+                if (author == null)
+                {
+                    Console.WriteLine($" There are no Posts by {author}");
+                }
+                else
+                {
+                    Console.WriteLine($" All Posts by {author}");
+
+                    post.Display();
+                    Console.WriteLine();
+                }
+            }
+        }
+
+        public void DisplayByDate(DateTime date)
+        {
+            ConsoleHelper.OutputTitle(" Displaying Posts by Author");
+
+            foreach (Post post in posts)
+            {
+                if (date == null)
+                {
+                    Console.WriteLine($" There are no Posts on {date}");
+                }
+                else
+                {
+                    Console.WriteLine($" All Posts on {date}");
+
+                    post.Display();
+                    Console.WriteLine();
+                }
+            }
+        }
+
+        public void Comment(int id)
+        {
+            ConsoleHelper.OutputTitle(" Commenting on a Post");
+            Post post = FindPostByID(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($" Post with ID {id} does not exist");
+            }
+            else
+            {
+                Console.Write($" Please enter your Comment > ");
+                string text = Console.ReadLine();
+
+                post.AddComment(text);
+            }
+        }
+
+        public void LikePost(int id)
+        {
+            ConsoleHelper.OutputTitle(" Liking a Post");
+            Post post = FindPostByID(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($" Post with ID {id} does not exist");
+            }
+            else
+            {
+                Console.WriteLine($" You have Liked post with ID {id}");
+
+                post.Like();
+            }
+        }
+
+        public void UnlikePost(int id)
+        {
+            ConsoleHelper.OutputTitle(" Liking a Post");
+            Post post = FindPostByID(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($" Post with ID {id} does not exist");
+            }
+            else
+            {
+                Console.WriteLine($" You have Unliked post with ID {id}");
+
+                post.Unlike();
+            }
+        }
+    }
 }
