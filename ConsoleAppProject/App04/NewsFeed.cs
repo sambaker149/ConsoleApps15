@@ -72,7 +72,7 @@ namespace ConsoleAppProject.App04
         {
             foreach (Post post in posts)
             {
-                if (post.Username == author)
+                if (post.Author == author)
                 {
                     return post;
                 }
@@ -109,10 +109,12 @@ namespace ConsoleAppProject.App04
 
             if (post == null)
             {
+                Console.WriteLine();
                 Console.WriteLine($" Post with ID {id} does not exist");
             }
             else
             {
+                Console.WriteLine();
                 Console.WriteLine($" The Post with ID {id} has been removed");
 
                 posts.Remove(post);
@@ -126,6 +128,7 @@ namespace ConsoleAppProject.App04
         public void Display()
         {
             ConsoleHelper.OutputTitle(" Displaying All Posts");
+            Console.WriteLine();
 
             foreach (Post post in posts)
             {
@@ -145,13 +148,16 @@ namespace ConsoleAppProject.App04
             {
                 if (author == null)
                 {
+                    Console.WriteLine();
                     Console.WriteLine($" There are no Posts by {author}");
                 }
                 else
                 {
+                    Console.WriteLine();
                     Console.WriteLine($" All Posts by {author}");
 
                     post.Display();
+
                     Console.WriteLine();
                 }
             }
@@ -165,13 +171,16 @@ namespace ConsoleAppProject.App04
             {
                 if (date == null)
                 {
+                    Console.WriteLine();
                     Console.WriteLine($" There are no Posts on {date}");
                 }
                 else
                 {
+                    Console.WriteLine();
                     Console.WriteLine($" All Posts on {date}");
 
                     post.Display();
+
                     Console.WriteLine();
                 }
             }
@@ -184,48 +193,64 @@ namespace ConsoleAppProject.App04
 
             if (post == null)
             {
+                Console.WriteLine();
                 Console.WriteLine($" Post with ID {id} does not exist");
             }
             else
             {
+                Console.WriteLine();
                 Console.Write($" Please enter your Comment > ");
                 string text = Console.ReadLine();
 
                 post.AddComment(text);
+
+                Console.WriteLine();
+
+                post.Display();
             }
         }
 
         public void LikePost(int id)
         {
-            ConsoleHelper.OutputTitle(" Liking a Post");
             Post post = FindPostByID(id);
 
             if (post == null)
             {
+                Console.WriteLine();
                 Console.WriteLine($" Post with ID {id} does not exist");
             }
             else
             {
+                Console.WriteLine();
                 Console.WriteLine($" You have Liked post with ID {id}");
 
                 post.Like();
+
+                Console.WriteLine();
+
+                post.Display();
             }
         }
 
         public void UnlikePost(int id)
         {
-            ConsoleHelper.OutputTitle(" Liking a Post");
             Post post = FindPostByID(id);
 
             if (post == null)
             {
+                Console.WriteLine();
                 Console.WriteLine($" Post with ID {id} does not exist");
             }
             else
             {
+                Console.WriteLine();
                 Console.WriteLine($" You have Unliked post with ID {id}");
 
                 post.Unlike();
+
+                Console.WriteLine();
+
+                post.Display();
             }
         }
     }

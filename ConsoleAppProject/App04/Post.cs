@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ConsoleAppProject.App04
@@ -16,7 +15,7 @@ namespace ConsoleAppProject.App04
     {
         public int postID { get; }
 
-        public string Username { get; }
+        public string Author { get; }
 
         public DateTime Timestamp { get; }
 
@@ -31,7 +30,7 @@ namespace ConsoleAppProject.App04
             instances++;
             postID = instances;
 
-            this.Username = author;
+            this.Author = author;
             Timestamp = DateTime.Now;
 
             likes = 0;
@@ -72,8 +71,8 @@ namespace ConsoleAppProject.App04
         {
             Console.WriteLine();
             Console.WriteLine($" Post ID: {postID}");
-            Console.WriteLine($" Author: {Username}");
-            Console.WriteLine($" Time Elpased: {FormatElapsedTime(Timestamp)}");
+            Console.WriteLine($" Author: {Author}");
+            Console.WriteLine($" Time Elapsed: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();
 
             if (likes > 0)

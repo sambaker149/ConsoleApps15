@@ -35,7 +35,8 @@ namespace ConsoleAppProject.App04
                 " Display Posts by Author",
                 " Display Posts by Date",
                 " Add Comment to Post",
-                " Like or Unlike a Post",
+                " Like a Post",
+                " Unlike a Post",
                 " Quit"
             };
 
@@ -73,9 +74,12 @@ namespace ConsoleAppProject.App04
                         AddComment(); 
                         break;
                     case 8: 
-                        RatePost(); 
+                        AddLike(); 
                         break;
-                    case 9: 
+                    case 9:
+                        AddUnlike();
+                        break;
+                    case 10: 
                         wantToQuit = true; 
                         break;
                 }
@@ -101,6 +105,8 @@ namespace ConsoleAppProject.App04
             Console.WriteLine(" You have successfully posted your Message");
             ConsoleHelper.OutputTitle(" Your Message:");
             post.Display();
+
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -125,6 +131,8 @@ namespace ConsoleAppProject.App04
             Console.WriteLine(" You have successfully posted your Photo");
             ConsoleHelper.OutputTitle(" Your Photo:");
             post.Display();
+
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -146,8 +154,12 @@ namespace ConsoleAppProject.App04
         {
             ConsoleHelper.OutputTitle(" Removing a Post");
             
-            int id = (int)ConsoleHelper.InputNumber("Please Enter the Post ID > ");
+            int id = (int)ConsoleHelper.InputNumber("Please Enter " +
+                "the Post ID > ");
+
             feed.RemovePost(id);
+
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -158,6 +170,8 @@ namespace ConsoleAppProject.App04
             ConsoleHelper.OutputTitle(" All Posts");
             
             feed.Display();
+            
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -170,6 +184,8 @@ namespace ConsoleAppProject.App04
             string author = Console.ReadLine();
 
             feed.DisplayByAuthor(author);
+            
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -181,18 +197,39 @@ namespace ConsoleAppProject.App04
                 "the Post ID > ");
 
             feed.Comment(id);
-            
+
+            Console.WriteLine(" Your Comment has been Added");
+            Console.WriteLine();
         }
 
         /// <summary>
-        /// Allows the user to add a Like or Unlike to a post
+        /// Adds the User's Like to the Post based on ID Entered
         /// </summary>
-        private void RatePost()
+        private void AddLike()
         {
+            ConsoleHelper.OutputTitle(" Liking a Post");
+
             int id = (int)ConsoleHelper.InputNumber(" Please Enter " +
                 "the Post ID > ");
 
             feed.LikePost(id);
+
+            Console.WriteLine();
+        }
+
+        /// <summary>
+        /// Adds the User's Unlike to the Post based on ID Entered
+        /// </summary>
+        private void AddUnlike()
+        {
+            ConsoleHelper.OutputTitle(" Unliking a Post");
+
+            int id = (int)ConsoleHelper.InputNumber(" Please Enter " +
+                "the Post ID > ");
+
+            feed.UnlikePost(id);
+
+            Console.WriteLine();
         }
     }
 }
