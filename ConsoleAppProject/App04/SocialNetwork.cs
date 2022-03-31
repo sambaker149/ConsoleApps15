@@ -13,7 +13,7 @@ namespace ConsoleAppProject.App04
     /// Users can also display the posts in a variety of ways
     /// </summary>
     /// <author>
-    ///  Samuel Baker 27/03/2022
+    ///  Samuel Baker 28/03/2022
     /// </author> 
     public class SocialNetwork
     {

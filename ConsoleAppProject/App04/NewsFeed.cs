@@ -9,7 +9,7 @@ namespace ConsoleAppProject.App04
     /// in a social network application
     /// </summary>
     /// <author>
-    ///  Samuel Baker 27/03/2022
+    ///  Samuel Baker 28/03/2022
     /// </author> 
     public class NewsFeed
     {

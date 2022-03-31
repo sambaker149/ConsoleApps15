@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ConsoleAppProject.App03;
+using Web.Pages.Network;
 
 namespace Web.Data
 {
@@ -16,5 +17,9 @@ namespace Web.Data
         }
 
         public DbSet<Student> Student { get; set; }
+
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<PhotoPost> Photos { get; set; }
+        public DbSet<MessagePost> Messages { get; set; }
     }
 }

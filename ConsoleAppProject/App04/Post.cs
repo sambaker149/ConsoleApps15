@@ -9,8 +9,9 @@ namespace ConsoleAppProject.App04
     /// Timestamp, Likes and Comments
     /// </summary>
     /// <author>
-    /// Samuel Baker 27/03/2022
+    /// Samuel Baker 31/03/2022
     /// </author>
+    [Serializable]
     public class Post
     {
         public int postID { get; }
@@ -25,6 +26,9 @@ namespace ConsoleAppProject.App04
 
         private readonly List<String> comments;
 
+        /// <summary>
+        /// Constructor for objects of class Post
+        /// </summary>
         public Post(string author)
         {
             instances++;
