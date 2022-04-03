@@ -2,39 +2,29 @@
 @model Web.Pages.Network.Comments.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Remove Comment";
 }
-
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Post</h4>
-    <hr />
+<header>
+<h1>Remove Comment</h1>
+</header>
+<section>
+<h4>Are you sure you want to remove this Comment?</h4>
+<hr/>
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Post.Author)
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Comment.Text)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Post.Author)
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Comment.Text)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Post.Timestamp)
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Comment.Post)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Post.Timestamp)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Post.Likes)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Post.Likes)
-        </dd>
     </dl>
     
     <form method="post">
-        <input type="hidden" asp-for="Post.PostId" />
+        <input type="hidden" asp-for="Comment.CommentId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <a class="btn btn-secondary" asp-page="./Index">Back to List</a>
     </form>
-</div>
+</section>

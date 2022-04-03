@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Web.Data;
 using Web.Pages.Network;
 
-namespace Web.Pages.Network.Comments
+namespace Web.Pages.Network.PhotoPosts
 {
     public class DetailsModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace Web.Pages.Network.Comments
             _context = context;
         }
 
-        public Comment Comment { get; set; }
+        public PhotoPost PhotoPost { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,10 +29,9 @@ namespace Web.Pages.Network.Comments
                 return NotFound();
             }
 
-            Comment = await _context.Comments
-                .Include(c => c.Post).FirstOrDefaultAsync(m => m.CommentId == id);
+            PhotoPost = await _context.Photos.FirstOrDefaultAsync(m => m.PostId == id);
 
-            if (Comment == null)
+            if (PhotoPost == null)
             {
                 return NotFound();
             }

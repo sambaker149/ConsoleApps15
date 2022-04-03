@@ -1,0 +1,122 @@
+﻿@page
+@model Web.Pages.Network.Posts.IndexModel
+
+@{
+    ViewData["Title"] = "Add Post";
+}
+
+<header class="jumbotron">
+    <h1>Add Post</h1>
+    
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name: 
+                <input type="text" name="userName"  />
+                <input type="submit" value="Search" class="btn btn-info" /> 
+                <a class="btn btn-secondary" asp-action="Index">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+
+</header>
+
+<p>
+    <a class="btn btn-success" asp-controller="MessagePosts" asp-action="Create">Add New Message Post</a>
+    <a class="btn btn-info" asp-controller="PhotoPosts" asp-action="Create">Add New Photo Post</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                PostID
+            </th>
+            <th>
+                User
+            </th>
+            <th>
+                Message
+            </th>
+            <th>
+                Photo
+            </th>
+            <th>
+                Caption
+            </th>
+            <th>
+                Timestamp
+            </th>
+            <th>
+                Likes
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Post)
+        {
+            MessagePost message = null;
+            PhotoPost photo = null;
+
+            if(item is MessagePost)
+            {
+                message = (MessagePost)item;
+            }
+
+            if (item is PhotoPost)
+            {
+                photo = (PhotoPost)item;
+            }
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @if (message != null)
+                {
+                    <span>@message.Message</span>
+                }
+                else
+                {
+                    <span>Null</span>
+                }
+            </td>
+            <td>
+                @if (photo != null)
+                {
+                    <span>@photo.Filename</span>
+                }
+                else
+                {
+                    <span>Null</span>
+                }
+            </td>
+            <td>
+                @if (photo != null)
+                {
+                    <span>@photo.Caption</span>
+                }
+                else
+                {
+                    <span>Null</span>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Likes)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PostId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

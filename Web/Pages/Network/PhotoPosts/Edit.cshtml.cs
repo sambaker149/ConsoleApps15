@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Web.Data;
 using Web.Pages.Network;
 
-namespace Web.Pages.Network.Comments
+namespace Web.Pages.Network.PhotoPosts
 {
     public class EditModel : PageModel
     {
@@ -22,7 +22,7 @@ namespace Web.Pages.Network.Comments
         }
 
         [BindProperty]
-        public Comment Comment { get; set; }
+        public PhotoPost PhotoPost { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -31,14 +31,12 @@ namespace Web.Pages.Network.Comments
                 return NotFound();
             }
 
-            Comment = await _context.Comments
-                .Include(c => c.Post).FirstOrDefaultAsync(m => m.CommentId == id);
+            PhotoPost = await _context.Photos.FirstOrDefaultAsync(m => m.PostId == id);
 
-            if (Comment == null)
+            if (PhotoPost == null)
             {
                 return NotFound();
             }
-           ViewData["PostId"] = new SelectList(_context.Posts, "PostId", "Author");
             return Page();
         }
 
@@ -51,7 +49,7 @@ namespace Web.Pages.Network.Comments
                 return Page();
             }
 
-            _context.Attach(Comment).State = EntityState.Modified;
+            _context.Attach(PhotoPost).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +57,7 @@ namespace Web.Pages.Network.Comments
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CommentExists(Comment.CommentId))
+                if (!PhotoPostExists(PhotoPost.PostId))
                 {
                     return NotFound();
                 }
@@ -72,9 +70,9 @@ namespace Web.Pages.Network.Comments
             return RedirectToPage("./Index");
         }
 
-        private bool CommentExists(int id)
+        private bool PhotoPostExists(int id)
         {
-            return _context.Comments.Any(e => e.CommentId == id);
+            return _context.Photos.Any(e => e.PostId == id);
         }
     }
 }

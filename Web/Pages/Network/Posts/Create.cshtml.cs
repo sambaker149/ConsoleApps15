@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Web.Data;
 using Web.Pages.Network;
 
-namespace Web.Pages.Network.Comments
+namespace Web.Pages.Network.Posts
 {
     public class CreateModel : PageModel
     {
@@ -22,12 +22,11 @@ namespace Web.Pages.Network.Comments
 
         public IActionResult OnGet()
         {
-        ViewData["PostId"] = new SelectList(_context.Posts, "PostId", "Author");
             return Page();
         }
 
         [BindProperty]
-        public Comment Comment { get; set; }
+        public Post Post { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -37,7 +36,7 @@ namespace Web.Pages.Network.Comments
                 return Page();
             }
 
-            _context.Comments.Add(Comment);
+            _context.Posts.Add(Post);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

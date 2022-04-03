@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Web.Data;
 using Web.Pages.Network;
 
-namespace Web.Pages.Network.Comments
+namespace Web.Pages.Network.PhotoPosts
 {
     public class IndexModel : PageModel
     {
@@ -20,12 +20,11 @@ namespace Web.Pages.Network.Comments
             _context = context;
         }
 
-        public IList<Comment> Comment { get;set; }
+        public IList<PhotoPost> PhotoPost { get;set; }
 
         public async Task OnGetAsync()
         {
-            Comment = await _context.Comments
-                .Include(c => c.Post).ToListAsync();
+            PhotoPost = await _context.Photos.ToListAsync();
         }
     }
 }

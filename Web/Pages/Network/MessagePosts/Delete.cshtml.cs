@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Web.Data;
 using Web.Pages.Network;
 
-namespace Web.Pages.Network.Comments
+namespace Web.Pages.Network.MessagePosts
 {
     public class DeleteModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace Web.Pages.Network.Comments
         }
 
         [BindProperty]
-        public Comment Comment { get; set; }
+        public MessagePost MessagePost { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,10 +30,9 @@ namespace Web.Pages.Network.Comments
                 return NotFound();
             }
 
-            Comment = await _context.Comments
-                .Include(c => c.Post).FirstOrDefaultAsync(m => m.CommentId == id);
+            MessagePost = await _context.Messages.FirstOrDefaultAsync(m => m.PostId == id);
 
-            if (Comment == null)
+            if (MessagePost == null)
             {
                 return NotFound();
             }
@@ -47,11 +46,11 @@ namespace Web.Pages.Network.Comments
                 return NotFound();
             }
 
-            Comment = await _context.Comments.FindAsync(id);
+            MessagePost = await _context.Messages.FindAsync(id);
 
-            if (Comment != null)
+            if (MessagePost != null)
             {
-                _context.Comments.Remove(Comment);
+                _context.Messages.Remove(MessagePost);
                 await _context.SaveChangesAsync();
             }
 
