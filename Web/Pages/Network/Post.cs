@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Web.Pages.Network;
+
 
 namespace Web.Pages.Network
 {
@@ -24,11 +26,19 @@ namespace Web.Pages.Network
 
         public int Likes { get; set; }
 
+        public virtual ICollection<Comment> Comments { get; set; }
+
         //private readonly List<String> comments;
 
         /// <summary>
-        /// Constructor for objects of class Post
+        /// Constructor for objects of class MessagePost.
         /// </summary>
+        /// <param name="author">
+        /// The username of the author of this post.
+        /// </param>
+        /// <param name="text">
+        /// The text of this post.
+        /// </param>
         public Post()
         {
             Timestamp = DateTime.Now;
@@ -44,7 +54,7 @@ namespace Web.Pages.Network
         }
 
         ///<summary>
-        /// Record that a user has withdrawn their 'Like' vote.
+        /// Record that a user has withdrawn his/her 'Like' vote.
         ///</summary>
         public void Unlike()
         {
@@ -54,10 +64,30 @@ namespace Web.Pages.Network
             }
         }
 
+        /**
         ///<summary>
-        /// Create a string describing a time point in the past relative 
-        /// to current time
-        /// </summary>    
+        /// Add a comment to this post.
+        /// </summary>
+        /// <param name="text">
+        /// The new comment to add.
+        /// </param>        
+        public void AddComment(String text)
+        {
+            comments.Add(text);
+        }
+        */
+
+        ///<summary>
+        /// Create a string describing a time point in the past in terms 
+        /// relative to current time, such as "30 seconds ago" or "7 minutes ago".
+        /// Currently, only seconds and minutes are used for the string.
+        /// </summary>
+        /// <param name="time">
+        ///  The time value to convert (in system milliseconds)
+        /// </param> 
+        /// <returns>
+        /// A relative time string for the given time
+        /// </returns>      
         public String FormatElapsedTime()
         {
             DateTime current = DateTime.Now;
@@ -97,4 +127,4 @@ namespace Web.Pages.Network
             }
         }
     }
-}
+} 

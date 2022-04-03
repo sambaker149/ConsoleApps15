@@ -11,15 +11,16 @@ namespace Web.Data
 {
     public class WebContext : DbContext
     {
-        public WebContext (DbContextOptions<WebContext> options)
+        public WebContext(DbContextOptions<WebContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Student> Student { get; set; }
+        public DbSet<Student> Students { get; set; }
 
         public DbSet<Post> Posts { get; set; }
         public DbSet<PhotoPost> Photos { get; set; }
         public DbSet<MessagePost> Messages { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
