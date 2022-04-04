@@ -1,9 +1,10 @@
 ﻿@page
-@model Web.Pages.Network.MessagePosts.DeleteModel
+@model Web.Pages.Network.DeleteModel
 
 @{
     ViewData["Title"] = "Remove Message Post";
 }
+
 <header>
 <h1>Remove Message Post</h1>
 </header>
@@ -11,16 +12,16 @@
 <h4>Are you sure you want to remove this Message Post?</h4>
 <hr/>
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MessagePost.Message)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MessagePost.Message)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MessagePost.Author)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MessagePost.Author)
         </dd>
     </dl>

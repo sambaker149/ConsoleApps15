@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +19,7 @@ namespace Web.Pages.Network.Posts
             _context = context;
         }
 
-        public IList<Post> Post { get;set; }
+        public IList<Post> Post { get; set; }
 
         public async Task OnGetAsync()
         {

@@ -18,6 +18,15 @@ namespace ConsoleAppProject.App04
     public class SocialNetwork
     {
         private NewsFeed feed = new NewsFeed();
+
+        public NewsFeed NewsFeed
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public void Run()
         {
             OutputMenuChoices();

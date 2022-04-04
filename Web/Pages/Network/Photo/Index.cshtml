@@ -1,0 +1,60 @@
+﻿@page
+@model Web.Pages.Network.Photo.IndexModel
+
+@{
+    ViewData["Title"] = "Social Network";
+}
+
+<header class="jumbotron">
+    <h1>Social Network</h1>
+    <h2>By Samuel Baker</h2>
+</header>
+<section>
+<p>
+    <a class="btn btn-primary" asp-page="Create">New Photo Post</a>
+    <a class="btn btn-secondary" asp-page="Network/Index">View Message Posts</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-action no-color">
+        <p>
+            Find posts by Author:
+            <input type="text" name="userName" value="@Model.currentSearch" />
+            <input type="submit" value="Search Author" class="btn btn-info" />
+            <a class="btn btn-danger" asp-action="Index">Clear Search</a>
+        </p>
+    </div>
+</form>
+<br />
+<p></p>
+    @foreach (var item in Model.PhotoPost)
+    {
+        <a asp-page="./Delete Photo Post" asp-route-id="@item.PostId" class="float-right btn btn-danger">Delete Post</a>
+        <h5>@Html.DisplayFor(modelItem => item.Author)</h5>
+        <p>@Html.DisplayFor(modelItem => item.Caption)</p>
+        <img style="max-width: 65%;" src="/images/@item.Filename" />
+        <br />
+        <div>
+            <p>@item.FormatElapsedTime()</p>
+            <p>
+                @Html.DisplayFor(modelItem => item.Likes)
+                <a title="Like" asp-page-handler="Like" asp-route-id="@item.PostId" class="btn btn-success"></a>
+                <a title="UnLike" asp-page-handler="UnLike" asp-route-id="@item.PostId" class="btn btn-danger"></a>
+            </p>
+        </div>
+        <div>
+        <h3>Comments</h3>
+        @foreach (Comment comment in Model.Comment)
+        {
+            if (comment.PostId == item.PostId)
+            {
+                <p>@comment.Text</p>
+            }
+        }
+
+        <form method="post">
+            <input asp-for="@Model.Text" placeholder="New Comment" required />
+            <input asp-route-id="@item.PostId" type="submit" class="btn btn-primary" value="Add" />
+        </form>
+    </div>
+<br />}
+</section>

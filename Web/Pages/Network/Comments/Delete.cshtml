@@ -4,22 +4,28 @@
 @{
     ViewData["Title"] = "Remove Comment";
 }
+
 <header>
 <h1>Remove Comment</h1>
 </header>
 <section>
 <h4>Are you sure you want to remove this Comment?</h4>
 <hr/>
+    <h4>Comment</h4>
+    <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Comment.Text)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Comment.Text)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Comment.Post)
         </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Comment.Post.Author)
+        </dd>
     </dl>
     
     <form method="post">

@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,17 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using Web.Data;
 using Web.Pages.Network;
 
-namespace Web.Pages.Network.PhotoPosts
+namespace Web.Pages.Network.Photo
 {
-    public class DetailsModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly Web.Data.WebContext _context;
 
-        public DetailsModel(Web.Data.WebContext context)
+        public DeleteModel(Web.Data.WebContext context)
         {
             _context = context;
         }
 
+        [BindProperty]
         public PhotoPost PhotoPost { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -36,6 +36,24 @@ namespace Web.Pages.Network.PhotoPosts
                 return NotFound();
             }
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            PhotoPost = await _context.Photos.FindAsync(id);
+
+            if (PhotoPost != null)
+            {
+                _context.Photos.Remove(PhotoPost);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
         }
     }
 }

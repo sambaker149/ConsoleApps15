@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Web.Data;
 using Web.Pages.Network;
 
-namespace Web.Pages.Network.PhotoPosts
+namespace Web.Pages.Network
 {
     public class CreateModel : PageModel
     {
@@ -26,9 +25,10 @@ namespace Web.Pages.Network.PhotoPosts
         }
 
         [BindProperty]
-        public PhotoPost PhotoPost { get; set; }
+        public MessagePost MessagePost { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -36,7 +36,7 @@ namespace Web.Pages.Network.PhotoPosts
                 return Page();
             }
 
-            _context.Photos.Add(PhotoPost);
+            _context.Messages.Add(MessagePost);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

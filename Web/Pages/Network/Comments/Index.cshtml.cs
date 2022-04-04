@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +19,7 @@ namespace Web.Pages.Network.Comments
             _context = context;
         }
 
-        public IList<Comment> Comment { get;set; }
+        public IList<Comment> Comment { get; set; }
 
         public async Task OnGetAsync()
         {

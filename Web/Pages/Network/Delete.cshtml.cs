@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Web.Data;
 using Web.Pages.Network;
 
-namespace Web.Pages.Network.PhotoPosts
+namespace Web.Pages.Network
 {
     public class DeleteModel : PageModel
     {
@@ -21,7 +20,7 @@ namespace Web.Pages.Network.PhotoPosts
         }
 
         [BindProperty]
-        public PhotoPost PhotoPost { get; set; }
+        public MessagePost MessagePost { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,9 +29,9 @@ namespace Web.Pages.Network.PhotoPosts
                 return NotFound();
             }
 
-            PhotoPost = await _context.Photos.FirstOrDefaultAsync(m => m.PostId == id);
+            MessagePost = await _context.Messages.FirstOrDefaultAsync(m => m.PostId == id);
 
-            if (PhotoPost == null)
+            if (MessagePost == null)
             {
                 return NotFound();
             }
@@ -46,11 +45,11 @@ namespace Web.Pages.Network.PhotoPosts
                 return NotFound();
             }
 
-            PhotoPost = await _context.Photos.FindAsync(id);
+            MessagePost = await _context.Messages.FindAsync(id);
 
-            if (PhotoPost != null)
+            if (MessagePost != null)
             {
-                _context.Photos.Remove(PhotoPost);
+                _context.Messages.Remove(MessagePost);
                 await _context.SaveChangesAsync();
             }
 

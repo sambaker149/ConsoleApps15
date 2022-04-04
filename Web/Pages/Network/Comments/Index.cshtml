@@ -2,22 +2,26 @@
 @model Web.Pages.Network.Comments.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Social Network";
 }
 
-<h1>Index</h1>
-
+<header class="jumbotron">
+    <h1>Social Network</h1>
+    <h2>By Samuel Baker</h2>
+</header>
+<section>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-info" asp-page="Create">Add Comment</a> |
+    <a class="btn btn-secondary" asp-page="Index">Back to List</a> 
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Text
+                @Html.DisplayNameFor(model => model.Comment[0].Text)
             </th>
             <th>
-                Post
+                @Html.DisplayNameFor(model => model.Comment[0].Post)
             </th>
             <th></th>
         </tr>
@@ -29,14 +33,15 @@
                 @Html.DisplayFor(modelItem => item.Text)
             </td>
             <td>
-                @item.PostId
+                @Html.DisplayFor(modelItem => item.Post.Author)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CommentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CommentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CommentId">Delete</a>
+                <a class="btn btn-dark" asp-page="./Edit" asp-route-id="@item.CommentId">Edit</a> |
+                <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.CommentId">Details</a> |
+                <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.CommentId">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+</section>

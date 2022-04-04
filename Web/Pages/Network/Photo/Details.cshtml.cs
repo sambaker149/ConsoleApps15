@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Web.Data;
 using Web.Pages.Network;
 
-namespace Web.Pages.Network.MessagePosts
+namespace Web.Pages.Network.Photo
 {
     public class DetailsModel : PageModel
     {
@@ -20,7 +19,7 @@ namespace Web.Pages.Network.MessagePosts
             _context = context;
         }
 
-        public MessagePost MessagePost { get; set; }
+        public PhotoPost PhotoPost { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +28,9 @@ namespace Web.Pages.Network.MessagePosts
                 return NotFound();
             }
 
-            MessagePost = await _context.Messages.FirstOrDefaultAsync(m => m.PostId == id);
+            PhotoPost = await _context.Photos.FirstOrDefaultAsync(m => m.PostId == id);
 
-            if (MessagePost == null)
+            if (PhotoPost == null)
             {
                 return NotFound();
             }

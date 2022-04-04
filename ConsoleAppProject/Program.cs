@@ -17,6 +17,14 @@ namespace ConsoleAppProject
     /// </summary>
     public class Program
     {
+        public SocialNetwork SocialNetwork
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
