@@ -20,13 +20,9 @@
   <Class Name="ConsoleAppProject.App04.NewsFeed">
     <Position X="6.25" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAEAAAEAAAAAAABAYCAAAAAAQAACAEABkAAAAE=</HashCode>
+      <HashCode>AAAEAAAEAAAEAAAAAAABAYCAAAAAAQAAAAEABgAAAAE=</HashCode>
       <FileName>App04\NewsFeed.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="PhotoPost" />
-      <Property Name="MessagePost" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="ConsoleAppProject.App04.SocialNetwork">
     <Position X="3" Y="0.5" Width="2.5" />
