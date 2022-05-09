@@ -2,6 +2,7 @@
 {
     public enum GameChoice
     {
+        None,
         Rock,
         Paper,
         Scissors

@@ -8,26 +8,66 @@ namespace ConsoleAppProject.App06
 {
     public class Game
     {
-        // Player Properties
+        public const int MAX_ROUND = 10;
+
+        public int Round { get; set; }
+        public int LastRound { get; set; }
         public Player Human { get; }
         public Player Computer { get; }
         public Player CurrentPlayer { get; set;  }
         public Player Winner { get; set; }
 
-        
-        // Game Properties
-        public int LastRound { get; set; }
-        public int Round { get; set; }
-        public GamePlayer CurrentPlayer { get; set; }
-        public string WinnerName { get; set; }
+        private Random generator = new Random(55);
 
-        // Computer Properties
-        public int ComputerScore { get; set; }
-        public GameChoice ComputerChoice { get; set; }
+        public Game(string name)
+        {
+            Human = new Player(name, GamePlayer.Player);
+            Computer = new Player("Computer", GamePlayer.Computer);
 
-        // Constants
-        public const int MAX_ROUND = 10;
+            Round = 0;
+        }
 
+        public void Start()
+        {
+            Round = 1;
+            LastRound = 5;
 
+            CurrentPlayer = Human;
+
+            Human.Score = 0;
+            Computer.Score = 0;
+        }
+
+        public void MakeComputerChoice()
+        {
+            int choice = generator.Next(1,4);
+
+            switch(choice)
+            {
+                case 1: Computer.Choice = GameChoice.Rock; 
+                    break;
+                case 2: Computer.Choice = GameChoice.Paper;
+                    break;
+                case 3: Computer.Choice = GameChoice.Scissors;
+                    break;
+            }
+        }
+
+        public void End()
+        {
+            if (Computer.Score > Human.Score)
+            {
+                Winner = Computer;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Bad Luck! You Have Lost The Game To The Computer.");
+            }
+            else if (Computer.Score < Human.Score)
+            {
+                Winner = Human;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Congratulations! You Have Won The Game.");
+            }
+            else Winner = null;
+        }
     }
 }
