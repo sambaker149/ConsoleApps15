@@ -2,6 +2,7 @@
 using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
 using ConsoleAppProject.App04;
+using ConsoleAppProject.App06;
 using ConsoleAppProject.Helpers;
 using System;
 
@@ -13,18 +14,10 @@ namespace ConsoleAppProject
     /// to start App01 to App05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Samuel Baker 21/03/2022
+    /// Samuel Baker 10/05/2022
     /// </summary>
     public class Program
     {
-        public SocialNetwork SocialNetwork
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -41,6 +34,7 @@ namespace ConsoleAppProject
                 " BMI Calculator",
                 " Student Grades",
                 " Social Network",
+                " RPS Game",
                 " Quit"
             };
         
@@ -67,12 +61,16 @@ namespace ConsoleAppProject
                     SocialNetwork app04 = new SocialNetwork();
                     app04.Run();
                     break;
+                case 5:
+                    GameView app06 = new GameView();
+                    app06.Play();
+                    break;
 
                 default:
                     break;
                 
             }
-            while (choice != 5);
+            while (choice != 6);
         }
     }
 }
