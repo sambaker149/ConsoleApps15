@@ -64,13 +64,16 @@ namespace ConsoleAppProject.App06
                 Console.Write(" Please enter your name > ");
                 string name = Console.ReadLine();
 
-                game = new Game("Derek");
+                Console.Write(" Please enter your choice > ");
+                string choice = Console.ReadLine();
+
+                game = new Game("Sam");
             }
 
             game.Start();
         }
 
-        /// <summary>
+        /// <summary> 
         /// 
         /// </summary>
         private void SetupConsole()
@@ -78,8 +81,8 @@ namespace ConsoleAppProject.App06
             Console.SetWindowSize(100, 40);
             Console.SetBufferSize(100, 40);
 
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Black;
 
             Console.Clear();
         }
