@@ -42,5 +42,95 @@ namespace ConsoleApp.Tests
             Assert.IsTrue(choices[2] > 3000);
             Assert.IsTrue(choices[3] > 3000);
         }
+
+        [TestMethod]
+        public void TestScoreRoundRockPaper()
+        {
+            game.Start();
+
+            game.Human.Choice = GameChoice.Rock;
+            game.Computer.Choice = GameChoice.Paper;
+
+            game.ScoreRound();
+
+            Assert.AreEqual(0, game.Human.Score);
+            Assert.AreEqual(2, game.Computer.Score);
+            Assert.AreEqual("Computer", game.Winner.Name);
+        }
+
+        [TestMethod]
+        public void TestScoreRoundRockScissors()
+        {
+            game.Start();
+
+            game.Human.Choice = GameChoice.Rock;
+            game.Computer.Choice = GameChoice.Scissors;
+
+            game.ScoreRound();
+
+            Assert.AreEqual(2, game.Human.Score);
+            Assert.AreEqual(0, game.Computer.Score);
+            Assert.AreEqual("Sam", game.Winner.Name);
+        }
+
+        [TestMethod]
+        public void TestScoreRoundPaperRock()
+        {
+            game.Start();
+
+            game.Human.Choice = GameChoice.Paper;
+            game.Computer.Choice = GameChoice.Rock;
+
+            game.ScoreRound();
+
+            Assert.AreEqual(2, game.Human.Score);
+            Assert.AreEqual(0, game.Computer.Score);
+            Assert.AreEqual("Sam", game.Winner.Name);
+        }
+
+        [TestMethod]
+        public void TestScoreRoundPaperScissors()
+        {
+            game.Start();
+
+            game.Human.Choice = GameChoice.Paper;
+            game.Computer.Choice = GameChoice.Scissors;
+
+            game.ScoreRound();
+
+            Assert.AreEqual(0, game.Human.Score);
+            Assert.AreEqual(2, game.Computer.Score);
+            Assert.AreEqual("Computer", game.Winner.Name);
+        }
+
+        [TestMethod]
+        public void TestScoreRoundScissorsRock()
+        {
+            game.Start();
+
+            game.Human.Choice = GameChoice.Scissors;
+            game.Computer.Choice = GameChoice.Rock;
+
+            game.ScoreRound();
+
+            Assert.AreEqual(0, game.Human.Score);
+            Assert.AreEqual(2, game.Computer.Score);
+            Assert.AreEqual("Computer", game.Winner.Name);
+        }
+
+        [TestMethod]
+        public void TestScoreRoundScissorsPaper()
+        {
+            game.Start();
+
+            game.Human.Choice = GameChoice.Scissors;
+            game.Computer.Choice = GameChoice.Paper;
+
+            game.ScoreRound();
+
+            Assert.AreEqual(2, game.Human.Score);
+            Assert.AreEqual(0, game.Computer.Score);
+            Assert.AreEqual("Sam", game.Winner.Name);
+        }
     }
 }

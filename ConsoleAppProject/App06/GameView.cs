@@ -34,7 +34,7 @@ namespace ConsoleAppProject.App06
 
                 if (game.Round == game.LastRound)
                 {
-                    Console.WriteLine();
+                    Console.WriteLine(" ");
 
                 }
 

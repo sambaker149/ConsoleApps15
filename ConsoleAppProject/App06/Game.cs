@@ -96,6 +96,12 @@ namespace ConsoleAppProject.App06
                 Winner = Human;
             }
 
+            else if (Human.Choice == Computer.Choice)
+            {
+                Human.Score += 1;
+                Computer.Score += 1;
+            }
+
             if (Round < LastRound)
             {
                 Round++;
