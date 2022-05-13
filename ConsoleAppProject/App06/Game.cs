@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleAppProject.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,7 +10,7 @@ namespace ConsoleAppProject.App06
     /// </summary>
     public class Game
     {
-        public const int MAX_ROUNDS = 10;
+        public const int MAXIMUM_ROUND = 10;
         public int Round { get; set; }
         public int LastRound { get; set; }
         public Player Human { get; }
@@ -25,7 +26,7 @@ namespace ConsoleAppProject.App06
 
             Round = 0;
         }
-
+         
         public void Start()
         {
             Round = 1;
@@ -35,8 +36,16 @@ namespace ConsoleAppProject.App06
 
             Human.Score = 0;
             Computer.Score = 0;
+
+            SetLastRound();
         }
 
+        public void SetLastRound()
+        {
+            Console.Write(" Please enter the Number of Rounds > ");
+            LastRound = Console.ReadLine().Length;
+        }
+      
         /// <summary>
         /// 
         /// </summary>
@@ -46,9 +55,49 @@ namespace ConsoleAppProject.App06
 
             switch (choice)
             {
-                case 1: Computer.Choice = GameChoice.Paper; break;
-                case 2: Computer.Choice = GameChoice.Rock; break;
-                case 3: Computer.Choice = GameChoice.Scissors; break;
+                case 1: 
+                    Computer.Choice = GameChoice.Rock; 
+                    break;
+                case 2: 
+                    Computer.Choice = GameChoice.Paper; 
+                    break;
+                case 3: 
+                    Computer.Choice = GameChoice.Scissors; 
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        public void MakeHumanChoice()
+        {
+            string[] choices =
+            {
+                " Rock",
+                " Paper",
+                " Scissors"
+            };
+
+            Console.WriteLine(" Rock, Paper or Scissors? > ");
+            Console.WriteLine();
+
+            int choice = ConsoleHelper.SelectChoice(choices);
+
+            switch (choice)
+            {
+                case 1:
+                    Human.Choice = GameChoice.Rock;
+                    break;
+                case 2:
+                    Human.Choice = GameChoice.Paper;
+                    break;
+                case 3:
+                    Human.Choice = GameChoice.Scissors;
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -104,6 +153,10 @@ namespace ConsoleAppProject.App06
 
             if (Round < LastRound)
             {
+                Console.WriteLine(" Your score is " +
+                    Human.Score);
+                Console.WriteLine(" The Computer's Score is " +
+                    Computer.Score);
                 Round++;
             }
             else End();
