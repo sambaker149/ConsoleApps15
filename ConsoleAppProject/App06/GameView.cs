@@ -5,15 +5,23 @@ using System.Text;
 
 namespace ConsoleAppProject.App06
 {
+    /// <summary>
+    /// This class will create a user interface for the
+    /// Rock-Paper-Scissors game using the windows
+    /// Console
+    /// </summary>
+    /// <author>
+    /// Samuel Baker 16/05/2022
+    /// </author>
     public class GameView
     {
         private Game game;
 
         /// <summary>
-        /// Controls the sequence of events of each round of the game
-        /// Repeats until the game is ended by the player
+        /// This method will control the progress of the
+        /// game from start to end.
         /// </summary>
-        public void Play()
+        public void PlayGame()
         {
             bool wantToQuit = true;
 
@@ -25,56 +33,46 @@ namespace ConsoleAppProject.App06
                 DisplayChoice(game.Human.Choice);
 
                 game.MakeComputerChoice();
-                DisplayChoice(game.Computer.Choice);
+                DisplayChoice(GameChoices.Scissors);
 
                 game.ScoreRound();
 
-                if (game.Round == game.LastRound)
+                if(game.Round == game.LastRound)
                 {
-                    Console.WriteLine();
-                    DisplayWinImage();
-                }
 
+                }
             } while (!wantToQuit);
         }
 
-        public void StartGame()
+        private void DisplayChoice(GameChoices choice)
         {
-            SetupConsole();
-
-            ConsoleHelper.OutputHeading("  Rock-Paper-Scissors ");
-
-            if (game == null)
-            {
-                Console.Write(" Please enter your name > ");
-                string name = Console.ReadLine();
-
-                game = new Game(name);
-            }
-
-            game.Start();
-        }
-
-        private void DisplayChoice(GameChoice choice)
-        {
-            if(choice == GameChoice.Rock)
-            {
-                GameImages.DrawRock(10, 10);
-            }
-            else if(choice == GameChoice.Paper)
-            {
-                GameImages.DrawPaper(10, 10);
-            }
-            else if (choice == GameChoice.Scissors)
+            if(choice == GameChoices.Scissors)
             {
                 GameImages.DrawScissors(10, 10);
             }
         }
 
-        private void GetPlayerChoice()
+        /// <summary>
+        /// Reset a game so that the scores reset to zero
+        /// for both players and the number of rounds is set.
+        /// </summary>
+        public void StartGame()
         {
-            game.MakeHumanChoice();
+            SetupConsole();
+
+            ConsoleHelper.OutputHeading("  Rock-Paper-Scissors Game");
+
+            if (game == null)
+            {
+                Console.Write(" Please enter your Name > ");
+                string name = Console.ReadLine();
+
+                game = new Game("Sam");
+            }
+
+            game.Start();
         }
+
 
         private void SetupConsole()
         {
@@ -82,21 +80,54 @@ namespace ConsoleAppProject.App06
             Console.SetBufferSize(100, 40);
 
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.Green;
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Clear();
         }
 
-        private void DisplayWinImage()
+        /// <summary>
+        /// Repeatedly ask the player to make a choice
+        /// and then ask the computer to make a choice.
+        /// The choices are then compared and scored
+        /// </summary>
+        public void GetPlayerChoice()
         {
-            if(game.Winner == game.Human)
+
+        }
+
+        public void ShowComputerChoice()
+        {
+            switch (game.Computer.Choice)
             {
-                GameImages.DrawThumbsUp();
+                case GameChoices.Rock:
+                    GameImages.DrawRock(5, 8); 
+                    break;
+
+                case GameChoices.Paper:
+                    GameImages.DrawPaper(5, 8); 
+                    break;
+
+                case GameChoices.Scissors:
+                    GameImages.DrawScissors(5, 8); 
+                    break;
             }
-            else if(game.Winner == game.Computer)
-            {
-                GameImages.DrawThumbsDown();
-            }
+        }
+
+        public void ShowRoundScores()
+        {
+            Console.WriteLine(" ");
+        }
+
+        public void ShowWinner()
+        {
+
+        }
+        /// <summary>
+        /// One player or more players have reached the chosen 
+        /// maximum score and the winner can be decided.
+        /// </summary>
+        public void EndGame()
+        {
+
         }
     }
 }

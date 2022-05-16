@@ -17,7 +17,7 @@ namespace ConsoleApp.Tests
             Assert.AreEqual(0, game.Computer.Score);
             Assert.AreEqual(1, game.Round);
 
-            Assert.AreEqual(GamePlayer.Player, game.CurrentPlayer.PlayerType);
+            Assert.AreEqual(GamePlayers.Player, game.CurrentPlayer.PlayerType);
 
             Assert.AreEqual("Sam", game.Human.Name);
             Assert.AreEqual("Computer", game.Computer.Name);
@@ -48,8 +48,8 @@ namespace ConsoleApp.Tests
         {
             game.Start();
 
-            game.Human.Choice = GameChoice.Rock;
-            game.Computer.Choice = GameChoice.Paper;
+            game.Human.Choice = GameChoices.Rock;
+            game.Computer.Choice = GameChoices.Paper;
 
             game.ScoreRound();
 
@@ -63,8 +63,8 @@ namespace ConsoleApp.Tests
         {
             game.Start();
 
-            game.Human.Choice = GameChoice.Rock;
-            game.Computer.Choice = GameChoice.Scissors;
+            game.Human.Choice = GameChoices.Rock;
+            game.Computer.Choice = GameChoices.Scissors;
 
             game.ScoreRound();
 
@@ -78,8 +78,8 @@ namespace ConsoleApp.Tests
         {
             game.Start();
 
-            game.Human.Choice = GameChoice.Paper;
-            game.Computer.Choice = GameChoice.Rock;
+            game.Human.Choice = GameChoices.Paper;
+            game.Computer.Choice = GameChoices.Rock;
 
             game.ScoreRound();
 
@@ -93,8 +93,8 @@ namespace ConsoleApp.Tests
         {
             game.Start();
 
-            game.Human.Choice = GameChoice.Paper;
-            game.Computer.Choice = GameChoice.Scissors;
+            game.Human.Choice = GameChoices.Paper;
+            game.Computer.Choice = GameChoices.Scissors;
 
             game.ScoreRound();
 
@@ -108,8 +108,8 @@ namespace ConsoleApp.Tests
         {
             game.Start();
 
-            game.Human.Choice = GameChoice.Scissors;
-            game.Computer.Choice = GameChoice.Rock;
+            game.Human.Choice = GameChoices.Scissors;
+            game.Computer.Choice = GameChoices.Rock;
 
             game.ScoreRound();
 
@@ -123,8 +123,8 @@ namespace ConsoleApp.Tests
         {
             game.Start();
 
-            game.Human.Choice = GameChoice.Scissors;
-            game.Computer.Choice = GameChoice.Paper;
+            game.Human.Choice = GameChoices.Scissors;
+            game.Computer.Choice = GameChoices.Paper;
 
             game.ScoreRound();
 

@@ -14,7 +14,7 @@ namespace ConsoleAppProject
     /// to start App01 to App05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Samuel Baker 10/05/2022
+    /// Samuel Baker 16/05/2022
     /// </summary>
     public class Program
     {
@@ -63,7 +63,7 @@ namespace ConsoleAppProject
                     break;
                 case 5:
                     GameView app06 = new GameView();
-                    app06.Play();
+                    app06.PlayGame();
                     break;
 
                 default:
