@@ -117,9 +117,29 @@ namespace ConsoleAppProject.App06
             Console.WriteLine(" ");
         }
 
+        /// <summary>
+        /// This method displays who has one the game 
+        /// and shows an image on screen symbolising 
+        /// whether the player has lost or won
+        /// </summary>
         public void ShowWinner()
         {
-
+            if(game.Winner == game.Human)
+            {
+                Console.WriteLine(" Congratulations! You " +
+                    "have won the Game! ");
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Black;
+                GameImages.DrawThumbsUp();
+            }
+            else if(game.Winner == game.Computer)
+            {
+                Console.WriteLine(" The Computer has won the Game. " +
+                    "Better luck next time! ");
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.White;
+                GameImages.DrawThumbsDown();
+            }
         }
         /// <summary>
         /// One player or more players have reached the chosen 
@@ -127,6 +147,7 @@ namespace ConsoleAppProject.App06
         /// </summary>
         public void EndGame()
         {
+            ShowWinner();
 
         }
     }
