@@ -43,7 +43,7 @@ namespace ConsoleAppProject.App06
         public void Start()
         {
             Round = 1;
-            LastRound = 10;
+            LastRound = 1;
 
             CurrentPlayer = Human;
 
