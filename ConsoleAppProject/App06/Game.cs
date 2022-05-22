@@ -43,7 +43,7 @@ namespace ConsoleAppProject.App06
         public void Start()
         {
             Round = 1;
-            LastRound = 10;
+            LastRound = 1;
 
             CurrentPlayer = Human;
 
@@ -62,9 +62,12 @@ namespace ConsoleAppProject.App06
 
             switch (choice)
             {
-                case 1: Computer.Choice = GameChoices.Paper; break;
-                case 2: Computer.Choice = GameChoices.Rock; break;
-                case 3: Computer.Choice = GameChoices.Scissors; break;
+                case 1: Computer.Choice = GameChoices.Paper; 
+                    break;
+                case 2: Computer.Choice = GameChoices.Rock; 
+                    break;
+                case 3: Computer.Choice = GameChoices.Scissors; 
+                    break;
             }
         }
 
@@ -123,6 +126,11 @@ namespace ConsoleAppProject.App06
                 Computer.Score += 1;
             }
 
+            MonitorRound();
+        }
+
+        private void MonitorRound()
+        {
             if (Round < LastRound)
             {
                 Round++;
