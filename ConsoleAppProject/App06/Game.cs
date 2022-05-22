@@ -43,7 +43,7 @@ namespace ConsoleAppProject.App06
         public void Start()
         {
             Round = 1;
-            LastRound = 1;
+            LastRound = 10;
 
             CurrentPlayer = Human;
 
@@ -126,11 +126,6 @@ namespace ConsoleAppProject.App06
                 Computer.Score += 1;
             }
 
-            MonitorRound();
-        }
-
-        private void MonitorRound()
-        {
             if (Round < LastRound)
             {
                 Round++;
@@ -154,6 +149,14 @@ namespace ConsoleAppProject.App06
                 Winner = Human;
             }
             else Winner = null;
+        }
+
+        public GameView GameView
+        {
+            get => default;
+            set
+            {
+            }
         }
     }
 }

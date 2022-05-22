@@ -54,8 +54,8 @@ namespace ConsoleAppProject.App06
                 Console.Write(" Please enter your Name > ");
                 string name = Console.ReadLine();
 
-                //game.LastRound = ConsoleHelper.InputNumber(" Please " +
-                //    "input the number of Rounds > "); 
+               //game.LastRound = ConsoleHelper.InputNumber(" Please " +
+               //     "input the number of Rounds > "); 
 
                 game = new Game(name);
             }
@@ -180,6 +180,7 @@ namespace ConsoleAppProject.App06
             Console.WriteLine(" The Computer's Current " +
                 "Score is: " + game.Computer.Score);
             Console.WriteLine();
+            game.Round++;
         }
 
         /// <summary>
@@ -216,9 +217,9 @@ namespace ConsoleAppProject.App06
 
                 GameImages.DrawSmile();
             }
-            Console.WriteLine(" Your final score is " + 
+            Console.WriteLine(" Your final score is: " + 
                 game.Human.Score);
-            Console.WriteLine(" The Computer's final score is " + 
+            Console.WriteLine(" The Computer's final score is: " + 
                 game.Computer.Score);
             Console.WriteLine();
         }
