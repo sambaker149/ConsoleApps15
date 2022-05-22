@@ -11,7 +11,7 @@ namespace ConsoleAppProject.App06
     /// Console
     /// </summary>
     /// <author>
-    /// Samuel Baker 16/05/2022
+    /// Samuel Baker 22/05/2022
     /// </author>
     public class GameView
     {
@@ -29,27 +29,18 @@ namespace ConsoleAppProject.App06
             {
                 StartGame();
 
-                GetPlayerChoice();
-                DisplayChoice(game.Human.Choice);
+                MakeHumanChoice();
 
                 game.MakeComputerChoice();
-                DisplayChoice(GameChoices.Scissors);
+                ShowComputerChoice();
 
                 game.ScoreRound();
 
-                if(game.Round == game.LastRound)
+                if (game.Round == game.LastRound)
                 {
-
+                    EndGame();
                 }
-            } while (!wantToQuit);
-        }
-
-        private void DisplayChoice(GameChoices choice)
-        {
-            if(choice == GameChoices.Scissors)
-            {
-                GameImages.DrawScissors(10, 10);
-            }
+            } while(!wantToQuit);
         }
 
         /// <summary>
@@ -67,20 +58,27 @@ namespace ConsoleAppProject.App06
                 Console.Write(" Please enter your Name > ");
                 string name = Console.ReadLine();
 
-                game = new Game("Sam");
+                //game.LastRound = ConsoleHelper.InputNumber(" Please " +
+                //    "input the number of Rounds > "); 
+
+                game = new Game(name);
             }
 
             game.Start();
         }
 
-
+        /// <summary>
+        /// This method sets up the console in which the
+        /// game will be played, setting the window dimensions
+        /// as well as the colour scheme
+        /// </summary>
         private void SetupConsole()
         {
-            Console.SetWindowSize(100, 40);
-            Console.SetBufferSize(100, 40);
+            //Console.SetWindowSize(100, 40);
+            //Console.SetBufferSize(100, 40);
 
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.Clear();
         }
 
@@ -89,32 +87,98 @@ namespace ConsoleAppProject.App06
         /// and then ask the computer to make a choice.
         /// The choices are then compared and scored
         /// </summary>
-        public void GetPlayerChoice()
+        public void MakeHumanChoice()
         {
+            ConsoleHelper.OutputTitle($" This is Round " + 
+                game.Round + " of " + game.LastRound);
+            ConsoleHelper.OutputTitle(" Select Your Choice");
+            string[] choices =
+             {
+                " Rock",
+                " Paper",
+                " Scissors"
+            };
 
+            int choice = ConsoleHelper.SelectChoice(choices);
+            ExecuteHumanChoice(choice);
         }
 
-        public void ShowComputerChoice()
+        /// <summary>
+        /// This method executes the choice, as made by the 
+        /// user in the MakeHumanChoice method
+        /// </summary>
+        private void ExecuteHumanChoice(int choice)
         {
-            switch (game.Computer.Choice)
+            switch (choice)
             {
-                case GameChoices.Rock:
-                    GameImages.DrawRock(5, 8); 
+                case 1: game.Human.Choice = GameChoices.Rock; 
+                    break;
+                case 2: game.Human.Choice = GameChoices.Paper; 
+                    break;
+                case 3: game.Human.Choice = GameChoices.Scissors; 
                     break;
 
-                case GameChoices.Paper:
-                    GameImages.DrawPaper(5, 8); 
-                    break;
-
-                case GameChoices.Scissors:
-                    GameImages.DrawScissors(5, 8); 
+                default: 
                     break;
             }
+            ShowHumanChoice();
         }
 
+        /// <summary>
+        /// This method displays the choice of the computer
+        /// through an appropriate image as well as displaying
+        /// the choice in text form
+        /// </summary>
+        public void ShowHumanChoice()
+        {
+            if(game.Human.Choice == GameChoices.Rock)
+            {
+                GameImages.DrawRock(1, 20);
+            }
+            else if(game.Human.Choice == GameChoices.Paper)
+            {
+                GameImages.DrawPaper(1, 20);
+            }
+            else if (game.Human.Choice == GameChoices.Scissors)
+            {
+                GameImages.DrawScissors(1, 20);
+            }
+            Console.WriteLine(" You have chosen " + game.Human.Choice);
+        }
+
+        /// <summary>
+        /// This method displays the choice of the computer
+        /// through an appropriate image as well as displaying
+        /// the choice in text form
+        /// </summary>
+        public void ShowComputerChoice()
+        {
+            ConsoleHelper.OutputTitle(" The Computer's Choice");
+            switch (game.Computer.Choice)
+            {
+                case GameChoices.Rock: GameImages.DrawRock(1, 37); 
+                    break;
+                case GameChoices.Paper: GameImages.DrawPaper(1, 37); 
+                    break;
+                case GameChoices.Scissors: GameImages.DrawScissors(1, 37); 
+                    break;
+            }
+            Console.WriteLine(" The computer has chosen " + game.Computer.Choice);
+            ShowRoundScores();
+        }
+
+        /// <summary>
+        /// This method displays the score for both the Human 
+        /// and the Computer after each round
+        /// </summary>
         public void ShowRoundScores()
         {
-            Console.WriteLine(" ");
+            ConsoleHelper.OutputTitle(" Current Scores");
+            game.ScoreRound();
+            Console.WriteLine(" Your Current Score is: " 
+                + game.Human.Score);
+            Console.WriteLine(" The Computer's Current " +
+                "Score is: " + game.Computer.Score);
         }
 
         /// <summary>
@@ -148,7 +212,29 @@ namespace ConsoleAppProject.App06
         public void EndGame()
         {
             ShowWinner();
+            ChooseRestart();
+        }
 
+        private void ChooseRestart()
+        {
+            string[] choices =
+            {
+                " Restart",
+                " Quit"
+            };
+
+            Console.WriteLine(" Would you like to Restart or Quit?");
+            Console.WriteLine();
+
+            int choice = ConsoleHelper.SelectChoice(choices);
+
+            switch (choice)
+            {
+                case 1: game.Start(); break;
+
+                default: break;
+            }
+            while (choice != 1) ;
         }
     }
 }

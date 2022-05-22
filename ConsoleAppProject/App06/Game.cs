@@ -10,24 +10,18 @@ namespace ConsoleAppProject.App06
     /// round and determining a winner at the end of the game
     /// </summary>
     /// <author>
-    /// Samuel Baker 16/05/2022
+    /// Samuel Baker 22/05/2022
     /// </author> 
     public class Game
     {
         public const int MAX_ROUND = 10;
 
         public int Round { get; set; }
-
-        public int LastRound { get; set; }
-
+        public double LastRound { get; set; }
         public Player Human { get; }
-
         public Player Computer { get; }
-
         public Player CurrentPlayer { get; set; }
-
         public Player Winner { get; set; }
-
         private Random generator = new Random(55);
 
         /// <summary>
@@ -49,14 +43,13 @@ namespace ConsoleAppProject.App06
         public void Start()
         {
             Round = 1;
-            LastRound = 5;
+            LastRound = 10;
 
             CurrentPlayer = Human;
 
             Human.Score = 0;
             Computer.Score = 0;
         }
-
 
         /// <summary>
         /// This method uses a random generator for the computer to
