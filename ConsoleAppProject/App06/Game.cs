@@ -150,13 +150,5 @@ namespace ConsoleAppProject.App06
             }
             else Winner = null;
         }
-
-        public GameView GameView
-        {
-            get => default;
-            set
-            {
-            }
-        }
     }
 }

@@ -11,7 +11,7 @@ namespace ConsoleAppProject.App06
     /// Console
     /// </summary>
     /// <author>
-    /// Samuel Baker 22/05/2022
+    /// Samuel Baker 23/05/2022
     /// </author>
     public class GameView
     {
@@ -23,19 +23,23 @@ namespace ConsoleAppProject.App06
         /// </summary>
         public void PlayGame()
         {
-            StartGame();
-            
-            MakeHumanChoice();
-
-            game.MakeComputerChoice();
-            ShowComputerChoice();
-
-            game.ScoreRound();
-            
-            if (game.Round == game.LastRound)
+            do
             {
-                EndGame();
-            }
+
+                StartGame();
+
+                MakeHumanChoice();
+
+                game.MakeComputerChoice();
+                ShowComputerChoice();
+
+                game.ScoreRound();
+
+                if (game.Round == game.LastRound)
+                {
+                    EndGame();
+                }
+            } while (game.Round <= game.LastRound);
 
         }
 
@@ -54,10 +58,10 @@ namespace ConsoleAppProject.App06
                 Console.Write(" Please enter your Name > ");
                 string name = Console.ReadLine();
 
-               //game.LastRound = ConsoleHelper.InputNumber(" Please " +
-               //     "input the number of Rounds > "); 
-
                 game = new Game(name);
+
+                game.LastRound = ConsoleHelper.InputNumber(" Please " +
+                    "input the number of Rounds > "); 
             }
 
             game.Start();
@@ -180,7 +184,6 @@ namespace ConsoleAppProject.App06
             Console.WriteLine(" The Computer's Current " +
                 "Score is: " + game.Computer.Score);
             Console.WriteLine();
-            game.Round++;
         }
 
         /// <summary>
